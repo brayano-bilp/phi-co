@@ -1,0 +1,318 @@
+// ---------------------------------------------------------------------------
+// All English texts. Same structure as fr.js – keep both files in sync.
+// ---------------------------------------------------------------------------
+module.exports = {
+  lang: 'en',
+  locale: 'en_GB',
+  otherLang: { code: 'fr', label: 'FR', name: 'Français' },
+
+  nav: {
+    home: 'Home',
+    about: 'About us',
+    services: 'Our services',
+    projects: 'Projects',
+    contact: 'Contact',
+    quote: 'Request a quote',
+    skip: 'Skip to content',
+    menu: 'Menu',
+  },
+
+  paths: {
+    home: 'en/',
+    about: 'en/about/',
+    services: 'en/services/',
+    projects: 'en/projects/',
+    contact: 'en/contact/',
+    legal: 'en/legal/',
+    notFound: 'en/404.html',
+  },
+
+  common: {
+    readMore: 'Learn more',
+    seeAll: 'See all our projects',
+    seeServices: 'Discover our services',
+    contactUs: 'Contact us',
+    callUs: 'Call us',
+    writeUs: 'Write to us',
+    whatsapp: 'Chat on WhatsApp',
+    since: 'Since',
+    douala: 'Douala, Cameroon',
+    phone: 'Phone',
+    email: 'E-mail',
+    address: 'Address',
+    follow: 'Follow us',
+    legal: 'Legal notice',
+    rights: 'All rights reserved.',
+    backHome: 'Back to home',
+    close: 'Close',
+    previous: 'Previous',
+    next: 'Next',
+    openImage: 'Enlarge image',
+    brands: 'Brands and systems we work with',
+    gallery: 'Gallery',
+  },
+
+  cta: {
+    title: 'A façade, glazing or fit-out project?',
+    text: 'Our team carries out a targeted feasibility study based on your requirements: surveys, shop drawings, structural calculations and samples.',
+    button: 'Request a quote',
+    call: 'or call',
+  },
+
+  home: {
+    title: 'Phi & Co – Façades, aluminium joinery and glazing in Douala',
+    description: 'PHI & CO S.A designs, manufactures and installs curtain walls, aluminium windows and doors, glazing and exterior cladding in Cameroon since 2005. Engineering, production and installation to international standards.',
+    hero: {
+      kicker: 'Engineering · Design · Construction',
+      title: 'The envelope of your buildings, <em>in perfect proportion</em>.',
+      text: 'Curtain walls, aluminium joinery, glazing and exterior cladding: PHI & CO S.A engineers, manufactures in Douala and installs building-finishing works to international standards for banks, hotels, institutions and developers across Cameroon.',
+      primary: 'See our projects',
+      secondary: 'Our services',
+      trust: 'Partner of Schüco, Saint-Gobain, AGC, Alucobond, Cortizo systems…',
+    },
+    figures: {
+      title: 'Phi & Co in figures',
+      items: [
+        { value: '2005', label: 'Year founded' },
+        { value: '100 M', suffix: 'FCFA', label: 'share capital' },
+        { value: '4', label: 'sites in Douala: factories, warehouse, showroom' },
+        { value: '2', label: 'representative offices in Europe: Geneva and Cordignano' },
+        { value: '13', label: 'industrial partners in Europe and Morocco' },
+      ],
+    },
+    services: {
+      kicker: 'What we do',
+      title: 'Four areas of expertise, one point of contact',
+      text: 'From laser-scan surveys to final handover, we control the whole chain: engineering, manufacturing in our Douala factories and installation by our own teams.',
+    },
+    projects: {
+      kicker: 'Projects',
+      title: 'Landmark works across Douala',
+      text: 'Bank headquarters, a 5-star hotel, a university, port institutions: our façades and glazing dress reference buildings in Cameroon.',
+    },
+    method: {
+      kicker: 'Our method',
+      title: 'Every project starts with a rigorous study',
+      steps: [
+        { title: 'Proposal and feasibility study', text: 'Analysis of your requirements, choice of systems and a final priced proposal.' },
+        { title: 'Precision surveys', text: 'On-site measurements and coordinates with laser scanner and total station.' },
+        { title: 'Drawings and specifications', text: 'Shop drawings and execution details, catalogues, technical specifications, calculation notes and samples.' },
+        { title: 'Manufacturing and installation', text: 'Production in our Douala factories, then installation by our teams, backed by our international technical partners for highly technical works.' },
+      ],
+    },
+    clients: {
+      kicker: 'References',
+      title: 'They trust us',
+    },
+    partners: {
+      kicker: 'Partners and suppliers',
+      title: 'The best European systems, manufactured and installed in Cameroon',
+      text: 'We work with leading manufacturers in Italy, Spain, Portugal, France, Germany and Morocco.',
+    },
+    why: {
+      title: 'Why choose Phi & Co',
+      items: [
+        { title: 'Local production', text: 'Two production centres in Douala (Yassa and Akwa): CNC cutting, assembly and insulating glass made on site, for controlled lead times.' },
+        { title: 'International standards', text: 'Certified systems from major European manufacturers, installed according to their technical specifications.' },
+        { title: 'International network', text: 'Representative offices in Geneva and Cordignano (Italy) and technical partners for complex works.' },
+        { title: 'Field experience', text: 'Almost twenty years of office, banking and hotel projects in Cameroon.' },
+      ],
+    },
+  },
+
+  about: {
+    title: 'About us – Phi & Co, façade and glazing specialist in Cameroon',
+    description: 'PHI & CO S.A, a Cameroonian public limited company with a share capital of 100,000,000 FCFA, founded in 2005: engineering, production and installation of building-finishing works, façades, glazing and supplies.',
+    kicker: 'About us',
+    heading: 'A Cameroonian company built to international standards',
+    intro: [
+      'PHI & CO S.A is a company incorporated under Cameroonian law with a share capital of 100,000,000 FCFA. Founded in 2005 and restructured in 2009 and 2019, its activities are the engineering, production and installation of building-finishing works, mainly façades, glazing and supplies.',
+      'PHI & CO S.A was born from its founders’ will to deliver, in Cameroon, works that meet international standards. Its name refers to the golden ratio φ, the “divine proportion”: harmony of proportions guides our approach to the building envelope.',
+    ],
+    history: {
+      title: 'Our history',
+      items: [
+        { year: '2005', title: 'Foundation', text: 'PHI & CO is founded in Douala with the ambition of bringing international-standard façades and glazing to Cameroon.' },
+        { year: '2009', title: 'First restructuring', text: 'Reorganisation of the company and scale-up of production capacity.' },
+        { year: '2019', title: 'Public limited company', text: 'New restructuring: PHI & CO becomes an S.A with a share capital of 100,000,000 FCFA and structures its network of European partners.' },
+        { year: 'Today', title: 'Regional reference', text: 'Four sites in Douala, two representative offices in Europe and projects for the country’s major institutions.' },
+      ],
+    },
+    infra: {
+      title: 'Our facilities',
+      text: 'Locally, the company operates two production units, a warehouse and a sales office, complemented by two representative offices in Europe.',
+      europe: 'Representative offices in Europe',
+      partnersLine: 'Partners and suppliers in Italy, Spain, Portugal, France, Morocco…',
+    },
+    method: {
+      title: 'How we work',
+      intro: 'For each project we carry out a targeted feasibility study according to the client’s requirements. Our projects start with:',
+      steps: [
+        'The final proposal submitted to the client;',
+        'On-site measurements and coordinates taken with precision instruments (laser scanner, total stations…);',
+        'Shop drawings and execution details, including catalogues and technical specifications;',
+        'Calculation notes and samples of the products to be supplied.',
+      ],
+      outro: 'For works requiring specific expertise and highly technical operations, the company relies on its network of international technical partners.',
+    },
+    values: {
+      title: 'Our commitments',
+      items: [
+        { title: 'Quality', text: 'Certified systems and installation in line with manufacturers’ specifications.' },
+        { title: 'Precision', text: 'Laser-scan and total-station surveys, detailed shop drawings, calculation notes.' },
+        { title: 'Safety', text: 'Teams trained for work at height and rope access for façade installation and maintenance.' },
+        { title: 'Proximity', text: 'A single point of contact in Douala, from the first meeting to final handover.' },
+      ],
+    },
+  },
+
+  servicesPage: {
+    title: 'Our services – Façades, aluminium joinery, supplies and other works',
+    description: 'Discover the four areas of expertise of PHI & CO S.A: curtain walls and cladding, aluminium joinery, supplies and fit-out, CNC cutting and insulating glass.',
+    kicker: 'Our services',
+    heading: 'Engineering, design, construction',
+    intro: 'We cover the whole building envelope and interior-finishing trades, for new builds and renovations, on behalf of public and private clients, architects and engineering firms.',
+  },
+
+  services: {
+    facades: {
+      name: 'Façades',
+      short: 'Curtain walls, façade renovation and composite-panel exterior cladding.',
+      title: 'Curtain walls, façade renovation and exterior cladding – Phi & Co Douala',
+      description: 'Design, manufacture and installation of curtain walls, façade renovation and Alucobond, Trespa and Fundermax exterior cladding in Cameroon.',
+      intro: 'Façades are our core business. We design, manufacture and install glazed envelopes and exterior cladding for office buildings, bank headquarters, hotels and institutional buildings, both new and refurbished.',
+      brands: ['Schüco', 'Saint-Gobain', 'AGC', 'Alucobond', 'Alucoil', 'Trespa', 'Fundermax'],
+      items: {
+        murRideau: { title: 'Curtain wall', text: 'Lightweight glazed façades on aluminium framing (stick, semi-structural and structural glazing systems), with insulating and solar-control glass suited to the equatorial climate. Thermal studies and calculation notes supplied with every project.' },
+        ravalement: { title: 'Façade renovation', text: 'Restoration and modernisation of existing façades: cleaning, substrate repair, waterproofing treatment and new finishes, including rope access on high-rise buildings.' },
+        revetement: { title: 'Exterior cladding (Alucobond, Trespa, Fundermax)', text: 'Aluminium composite and compact laminate cladding: ventilated rainscreens, cassettes, canopies and column casings. Wide choice of colours and finishes for a durable, low-maintenance façade.' },
+      },
+    },
+    aluminium: {
+      name: 'Aluminium joinery',
+      short: 'Doors, windows, glazed partitions, glass balustrades, louvres and sun shading.',
+      title: 'Aluminium joinery: doors, windows, glazed partitions, balustrades – Phi & Co',
+      description: 'Manufacture and installation of aluminium joinery in Douala: doors and windows, glazed partitions and openings, glass balustrades, louvres and brise-soleil on European systems.',
+      intro: 'Manufactured in our Douala workshops from profiles by leading European and Moroccan brands, our aluminium joinery combines slim lines, weather-tightness and corrosion resistance. Every item is surveyed, drawn and CNC-machined before installation.',
+      brands: ['Schüco', 'Cortizo', 'AluK', 'Aluminium du Maroc', 'Profils Systèmes', 'Dorma'],
+      items: {
+        portes: { title: 'Aluminium doors and windows', text: 'Casement, sliding and tilt-and-turn windows, entrance and automatic doors: thermally broken joinery available in all RAL colours and anodised finishes.' },
+        cloisons: { title: 'Glazed partitions and openings', text: 'Full-height office partitions, large glazed openings and shopfronts, with or without visible mullions, for bright and flexible spaces.' },
+        gardeCorps: { title: 'Glass balustrades', text: 'Laminated safety-glass balustrades, base-channel mounted or with stainless-steel/aluminium handrail, for balconies, mezzanines, stairs and terraces.' },
+        jalousies: { title: 'Louvres', text: 'Glass or aluminium louvre windows for controlled natural ventilation, ideal for circulation areas, plant rooms and school buildings.' },
+        briseSoleil: { title: 'Brise-soleil', text: 'Fixed or adjustable, horizontal or vertical blades to shield façades from solar radiation and cut air-conditioning loads while giving character to the architecture.' },
+      },
+    },
+    supplies: {
+      name: 'Supplies and fit-out',
+      short: 'Office furniture, tiling, painting, suspended ceilings and plasterboard.',
+      title: 'Supplies and fit-out: furniture, tiling, painting, ceilings – Phi & Co',
+      description: 'Supply and installation of office furniture, tiling, painting, suspended ceilings and plasterboard partitions for commercial fit-outs in Cameroon.',
+      intro: 'To deliver turnkey spaces, we complement our façades and joinery with interior-finishing trades: floor and wall coverings, ceilings, drywall and professional furniture, sourced from our European partners.',
+      brands: ['DVO', 'Zanutta', 'Saint-Gobain'],
+      items: {
+        mobilier: { title: 'Office furniture', text: 'Workstations, meeting rooms, reception and executive areas: supply and installation of durable, well-designed professional furniture.' },
+        carrelage: { title: 'Tiling', text: 'Supply and laying of large-format porcelain, ceramic and stone tiles for lobbies, offices, washrooms and façades.' },
+        peinture: { title: 'Painting', text: 'Interior and exterior paints, decorative coatings and façade treatments, applied by qualified teams.' },
+        plafond: { title: 'Suspended ceilings', text: 'Suspended ceilings in mineral tiles, metal or plasterboard, integrating lighting, air-conditioning and acoustics.' },
+        placo: { title: 'Plasterboard', text: 'Partition walls, linings and plasterboard casings, with acoustic and thermal insulation as required.' },
+      },
+    },
+    works: {
+      name: 'Other works',
+      short: 'CNC machining and insulating-glass production.',
+      title: 'CNC cutting and Swisspacer EDGE insulating-glass production – Phi & Co Douala',
+      description: 'Computer-controlled machining and local manufacture of insulating glass units with Swisspacer EDGE spacer, in Douala.',
+      intro: 'Our Douala production centres are equipped to machine profiles and manufacture insulating glass units on site. We put this capacity at the service of our own projects and of building professionals looking for a reliable local subcontractor.',
+      brands: ['Swisspacer', 'Saint-Gobain', 'AGC', 'Cristalmax'],
+      items: {
+        cnc: { title: 'CNC machining centre', text: 'Machining, drilling and cutting of aluminium profiles and composite panels on a computer-controlled machining centre: precision, repeatability and short lead times, including complex shapes.' },
+        vitrage: { title: 'Insulating glass production – Swisspacer EDGE system', text: 'Manufacture of insulating glass units with Swisspacer EDGE warm-edge spacer: better thermal insulation, less condensation and longer service life, for our façades and for sale to professionals.' },
+      },
+    },
+  },
+
+  projects: {
+    title: 'Our projects – Reference façades and glazing in Cameroon',
+    description: 'Bank headquarters, 5-star hotel, university, institutions: discover the façades, aluminium joinery and fit-outs delivered by PHI & CO S.A in Douala and across Cameroon.',
+    kicker: 'Projects',
+    heading: 'Divine proportions, one project at a time',
+    intro: 'Since 2005 our façades and glazing have dressed reference buildings in Cameroon. Here is a selection of our work; contact us to receive our full references file.',
+    filters: { all: 'All', facades: 'Façades', aluminium: 'Aluminium joinery', interior: 'Fit-out', site: 'On site' },
+    items: {
+      p01: 'Office building – façade and aluminium joinery',
+      p02: 'Bank branch – glazed façade and composite cladding',
+      p03: 'Office tower – façade cladding',
+      p04: 'Commercial building – curtain wall and glazed rotunda',
+      p05: 'Head office – curtain-wall façade',
+      p06: 'Auditorium – fit-out and furniture',
+      p07: 'Workspace – furniture and storage',
+      p08: 'Work in progress – substrate preparation',
+      p09: 'Glazed façade – rope-access works',
+      p10: 'Office building – glazing and joinery',
+      p11: 'Commercial building – aluminium and glass façade',
+      p12: 'Office building – curtain wall and glazed openings',
+      p13: 'Residential tower – brise-soleil and aluminium joinery',
+      p14: 'Office building – glazed envelope',
+    },
+    highlight: {
+      kicker: 'Recent reference',
+      title: 'BGFIBank Cameroun head office, Douala',
+      text: 'Façade delivered in Schüco FWS 50 system with Saint-Gobain glazing for the new BGFIBank Cameroun headquarters in Bonapriso, inaugurated in December 2024.',
+    },
+    clients: 'They trust us',
+  },
+
+  contact: {
+    title: 'Contact – Phi & Co, Douala',
+    description: 'Contact PHI & CO S.A in Douala: showroom on Boulevard de la République (Bali), technical office in Yassa, factories in Akwa and Yassa. Phone, e-mail and quote form.',
+    kicker: 'Contact',
+    heading: 'Let’s talk about your project',
+    intro: 'Quotes, showroom visits, technical questions: our team answers Monday to Friday. Describe your needs and we will get back to you quickly.',
+    sitesTitle: 'Our sites in Douala',
+    europeTitle: 'Representative offices in Europe',
+    form: {
+      title: 'Send us a message',
+      name: 'Name / Company',
+      email: 'E-mail address',
+      phone: 'Phone (optional)',
+      subject: 'Subject',
+      subjects: ['Quote request', 'Façades', 'Aluminium joinery', 'Supplies and fit-out', 'CNC cutting / insulating glass', 'Other'],
+      message: 'How can we help you?',
+      send: 'Send message',
+      sending: 'Sending…',
+      success: 'Thank you! Your message has been sent. We will reply as soon as possible.',
+      error: 'Something went wrong. You can also write to us directly at',
+      consent: 'Your data is only used to process your request.',
+    },
+    mapTitle: 'Find us',
+    hours: { title: 'Opening hours', text: 'Monday – Friday: 8:00 am – 5:30 pm' },
+  },
+
+  legal: {
+    title: 'Legal notice – Phi & Co',
+    description: 'Legal notice of phi-co.com, published by PHI & CO S.A, Douala, Cameroon.',
+    heading: 'Legal notice',
+    sections: [
+      { title: 'Publisher', html: '<p><strong>PHI & CO S.A</strong>, a public limited company under Cameroonian law with a share capital of 100,000,000 FCFA.<br>Registered office: Boulevard de la République, Bali – PO Box 15 792 Douala, Littoral, Cameroon.<br>Phone: (+237) 243 019 001 – E-mail: info@phi-co.com<br>Trade register and tax ID: <em>to be completed</em>.</p>' },
+      { title: 'Hosting', html: '<p><em>Hosting provider name and address to be completed.</em></p>' },
+      { title: 'Intellectual property', html: '<p>All content on this site (texts, photographs, logo, videos) is the property of PHI & CO S.A or its partners and may not be reproduced without written permission. The brands mentioned (Schüco, Saint-Gobain, AGC, Alucobond, etc.) belong to their respective owners.</p>' },
+      { title: 'Personal data', html: '<p>Information entered in the contact form is used solely to answer your request and is not shared with third parties. In accordance with Cameroonian regulations, you may request access to, rectification or deletion of your data by writing to info@phi-co.com.</p>' },
+      { title: 'Cookies', html: '<p>This site uses no advertising tracking cookies. The embedded map (Google Maps) may set cookies subject to Google’s policy.</p>' },
+    ],
+  },
+
+  notFound: {
+    title: 'Page not found – Phi & Co',
+    heading: 'Page not found',
+    text: 'The page you are looking for does not exist or has been moved.',
+  },
+
+  footer: {
+    about: 'Engineering, production and installation of building-finishing works: façades, glazing, aluminium joinery and supplies. Public limited company under Cameroonian law, Douala.',
+    navTitle: 'Navigation',
+    servicesTitle: 'Services',
+    contactTitle: 'Contact',
+    designBy: 'Website by',
+  },
+};
