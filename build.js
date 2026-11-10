@@ -13,14 +13,18 @@ const fs = require('fs');
 const path = require('path');
 
 const site = require('./src/data/site');
-const services = require('./src/data/services');
+const catalog = require('./src/data/catalog');
+const projectsData = require('./src/data/projects');
+const newsData = require('./src/data/news');
 const langs = [require('./src/i18n/fr'), require('./src/i18n/en')];
 
 const home = require('./src/pages/home');
 const about = require('./src/pages/about');
-const servicesPages = require('./src/pages/services');
+const catalogPages = require('./src/pages/catalog');
 const projects = require('./src/pages/projects');
-const contact = require('./src/pages/contact');
+const news = require('./src/pages/news');
+const testimonials = require('./src/pages/testimonials');
+const { contact, quote } = require('./src/pages/contact');
 const misc = require('./src/pages/misc');
 
 const ROOT = __dirname;
@@ -34,13 +38,32 @@ function write(rel, html) {
   written.push(file.replace(/\\/g, '/'));
 }
 
+// Nettoyage des anciennes pages générées (évite les pages orphelines)
+for (const t of langs) {
+  for (const key of Object.keys(t.paths)) {
+    const p = t.paths[key];
+    if (!p || p.endsWith('.html')) continue;
+    const dir = path.join(ROOT, p);
+    if (fs.existsSync(dir) && !['assets', 'src'].includes(p.split('/')[0])) fs.rmSync(dir, { recursive: true, force: true });
+  }
+}
+fs.rmSync(path.join(ROOT, 'services'), { recursive: true, force: true });
+fs.rmSync(path.join(ROOT, 'en', 'services'), { recursive: true, force: true });
+
 for (const t of langs) {
   write(t.paths.home, home(t));
   write(t.paths.about, about(t));
-  write(t.paths.services, servicesPages.overview(t));
-  for (const s of services) write(`${t.paths.services}${s.slug[t.lang]}/`, servicesPages.detail(t, s));
-  write(t.paths.projects, projects(t));
+  for (const c of catalog) {
+    write(t.paths[c.id], catalogPages.category(t, c));
+    for (const it of c.items) write(`${t.paths[c.id]}${it.slug[t.lang]}/`, catalogPages.item(t, c, it));
+  }
+  write(t.paths.projects, projects.index(t));
+  for (const p of projectsData.featured) write(`${t.paths.projects}${p.slug[t.lang]}/`, projects.detail(t, p));
+  write(t.paths.news, news.index(t));
+  for (const n of newsData) write(`${t.paths.news}${n.slug[t.lang]}/`, news.article(t, n));
+  write(t.paths.testimonials, testimonials(t));
   write(t.paths.contact, contact(t));
+  write(t.paths.quote, quote(t));
   write(t.paths.legal, misc.legal(t));
   write(t.paths.notFound, misc.notFound(t));
 }

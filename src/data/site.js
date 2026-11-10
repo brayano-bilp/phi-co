@@ -38,9 +38,9 @@ module.exports = {
     },
     {
       key: 'technique',
-      fr: { title: 'Bureau technique & administration', area: 'Yassa', detail: 'Entrée nouveau stade de Japoma, Douala' },
-      en: { title: 'Technical office & administration', area: 'Yassa', detail: 'Entrance of the new Japoma stadium, Douala' },
-      map: 'Yassa, Douala, Cameroun',
+      fr: { title: 'Bureau technique, administration & centre de production 2', area: 'Yassa', detail: 'Entrée du nouveau stade de Japoma, Douala' },
+      en: { title: 'Technical office, administration & production centre 2', area: 'Yassa', detail: 'Entrance of the new Japoma stadium, Douala' },
+      map: 'Stade de Japoma, Yassa, Douala, Cameroun',
     },
     {
       key: 'usine1',
@@ -48,13 +48,9 @@ module.exports = {
       en: { title: 'Factory & production centre 1', area: 'Akwa', detail: 'Ancien Dalip junction, Douala' },
       map: 'Akwa, Douala, Cameroun',
     },
-    {
-      key: 'usine2',
-      fr: { title: 'Entreposage & centre de production 2', area: 'Yassa', detail: 'Entrée nouveau stade de Japoma, Douala' },
-      en: { title: 'Warehouse & production centre 2', area: 'Yassa', detail: 'Entrance of the new Japoma stadium, Douala' },
-      map: 'Yassa, Douala, Cameroun',
-    },
   ],
+  // Site affiché sur la carte de la page Contact (clé ci-dessus).
+  mapSite: 'technique',
   representations: [
     { city: 'Genève', country: { fr: 'Suisse', en: 'Switzerland' }, cityEn: 'Geneva' },
     { city: 'Cordignano', country: { fr: 'Italie', en: 'Italy' }, cityEn: 'Cordignano' },

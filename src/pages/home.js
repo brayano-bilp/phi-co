@@ -1,65 +1,88 @@
-const { render, helpers, esc, icon, logoGrid, site, services, altLink } = require('../layout');
+const { render, helpers, esc, icon, logoGrid, itemCard, projectCard, newsCard, site, catalog, altLink } = require('../layout');
 const projects = require('../data/projects');
+const news = require('../data/news');
+const testimonials = require('../data/testimonials');
 
 module.exports = function home(t) {
   const h = helpers(t);
   const H = t.home;
-  const featured = projects.filter((p) => p.featured).slice(0, 6);
-  const whyIcons = ['factory', 'shield', 'globe', 'star'];
+  const C = t.catalog;
   const stepIcons = ['handshake', 'ruler', 'drawing', 'build'];
+  const whyIcons = ['factory', 'shield', 'globe', 'star'];
+  const products = catalog[0];
+  const flagship = ['curtainWall', 'doors', 'windows', 'pergolas'].map((id) => products.items.find((i) => i.id === id));
+  const words = H.hero.title; // contient <em>…</em>
 
   const body = `
 <section class="hero">
-  <video class="hero__video" autoplay muted loop playsinline preload="metadata" poster="${h.img('projects/proj-05.jpg')}" aria-hidden="true">
+  <video class="hero__video" autoplay muted loop playsinline preload="metadata" poster="${h.img('projects/jack/0011.jpg')}" aria-hidden="true">
     <source src="${site.base}/assets/video/intro.webm" type="video/webm">
   </video>
   <div class="hero__overlay"></div>
+  <div class="hero__grid" aria-hidden="true"></div>
   <div class="container hero__inner">
-    <p class="kicker kicker--light">${esc(H.hero.kicker)}</p>
-    <h1 class="hero__title">${H.hero.title}</h1>
+    <p class="kicker kicker--light hero__kicker">${esc(H.hero.kicker)}</p>
+    <h1 class="hero__title">${words}</h1>
     <p class="hero__text">${esc(H.hero.text)}</p>
     <div class="hero__actions">
-      <a class="btn btn--primary btn--lg" href="${h.url(t.paths.projects)}">${esc(H.hero.primary)} ${icon('arrow')}</a>
-      <a class="btn btn--ghost btn--lg" href="${h.url(t.paths.services)}">${esc(H.hero.secondary)}</a>
+      <a class="btn btn--primary btn--lg btn--shine" href="${h.url(t.paths.projects)}">${esc(H.hero.primary)} ${icon('arrow')}</a>
+      <a class="btn btn--ghost btn--lg" href="${h.url(t.paths.products)}">${esc(H.hero.secondary)}</a>
     </div>
     <p class="hero__trust">${icon('check')} ${esc(H.hero.trust)}</p>
   </div>
   <div class="hero__phi" aria-hidden="true">φ</div>
+  <a class="hero__scroll" href="#figures" aria-label="${esc(t.common.scroll)}"><span></span></a>
 </section>
 
-<section class="figures" aria-label="${esc(H.figures.title)}">
+<section class="figures" id="figures" aria-label="${esc(H.figures.title)}">
   <div class="container">
     <ul class="figures__list">
-      ${H.figures.items.map((f) => `<li class="figures__item"><span class="figures__value">${esc(f.value)}${f.suffix ? `<small>${esc(f.suffix)}</small>` : ''}</span><span class="figures__label">${esc(f.label)}</span></li>`).join('')}
+      ${H.figures.items.map((f, i) => `<li class="figures__item" data-reveal="up" data-delay="${i * 80}"><span class="figures__value"><span class="count" data-count="${f.value}">0</span>${f.suffix ? `<small>${esc(f.suffix)}</small>` : ''}</span><span class="figures__label">${esc(f.label)}</span></li>`).join('')}
     </ul>
   </div>
 </section>
 
-<section class="section" id="services">
+<section class="section" id="categories">
   <div class="container">
-    <div class="section__head">
-      <p class="kicker">${esc(H.services.kicker)}</p>
-      <h2 class="section__title">${esc(H.services.title)}</h2>
-      <p class="section__text">${esc(H.services.text)}</p>
+    <div class="section__head" data-reveal="up">
+      <p class="kicker">${esc(H.categories.kicker)}</p>
+      <h2 class="section__title">${esc(H.categories.title)}</h2>
+      <p class="section__text">${esc(H.categories.text)}</p>
     </div>
-    <div class="cards cards--4">
-      ${services.map((s) => `
-      <a class="card card--service" href="${h.servicePath(s)}">
-        <div class="card__media"><img src="${h.img(s.cover)}" alt="" loading="lazy" width="600" height="400"></div>
-        <div class="card__body">
-          <img class="card__icon" src="${h.img(s.icon)}" alt="" width="48" height="48" loading="lazy">
-          <h3 class="card__title">${esc(t.services[s.id].name)}</h3>
-          <p>${esc(t.services[s.id].short)}</p>
-          <span class="card__more">${esc(t.common.readMore)} ${icon('arrow')}</span>
+    <div class="cats">
+      ${catalog.map((c, i) => `
+      <a class="cat" href="${h.catPath(c)}" data-reveal="up" data-delay="${i * 110}" data-tilt>
+        <img class="cat__bg" src="${h.img(c.banner)}" alt="" loading="lazy" width="800" height="600">
+        <div class="cat__body">
+          <img class="cat__icon" src="${h.img(c.icon)}" alt="" width="40" height="40" loading="lazy">
+          <h3 class="cat__title">${esc(C.categories[c.id].name)}</h3>
+          <p>${esc(C.categories[c.id].short)}</p>
+          <ul class="cat__list">${c.items.slice(0, 4).map((it) => `<li>${esc(C.items[it.id].name)}</li>`).join('')}${c.items.length > 4 ? `<li>+${c.items.length - 4}</li>` : ''}</ul>
+          <span class="cat__more">${esc(t.catalog.labels.discover)} ${icon('arrow')}</span>
         </div>
       </a>`).join('')}
     </div>
   </div>
 </section>
 
-<section class="section section--tint" id="projects">
+<section class="section section--tint" id="flagship">
   <div class="container">
-    <div class="section__head section__head--row">
+    <div class="section__head section__head--row" data-reveal="up">
+      <div>
+        <p class="kicker">${esc(H.featuredProducts.kicker)}</p>
+        <h2 class="section__title">${esc(H.featuredProducts.title)}</h2>
+      </div>
+      <a class="btn btn--outline" href="${h.url(t.paths.products)}">${esc(t.common.seeProducts)} ${icon('arrow')}</a>
+    </div>
+    <div class="pgrid pgrid--4">
+      ${flagship.map((it, i) => itemCard(t, h, products, it, i)).join('')}
+    </div>
+  </div>
+</section>
+
+<section class="section" id="projects">
+  <div class="container">
+    <div class="section__head section__head--row" data-reveal="up">
       <div>
         <p class="kicker">${esc(H.projects.kicker)}</p>
         <h2 class="section__title">${esc(H.projects.title)}</h2>
@@ -67,46 +90,77 @@ module.exports = function home(t) {
       </div>
       <a class="btn btn--outline" href="${h.url(t.paths.projects)}">${esc(t.common.seeAll)} ${icon('arrow')}</a>
     </div>
-    <div class="mosaic">
-      ${featured.map((p, i) => `<a class="mosaic__item${i === 0 ? ' mosaic__item--big' : ''}" href="${h.img(p.img)}" data-lightbox data-caption="${esc(t.projects.items[p.id])}"><img src="${h.img(p.img)}" alt="${esc(t.projects.items[p.id])}" loading="lazy" width="800" height="600"><span class="mosaic__cap">${esc(t.projects.items[p.id])}</span></a>`).join('')}
+    <div class="prj-grid">
+      ${projects.featured.map((p, i) => projectCard(t, h, p, i, i === 0)).join('')}
+    </div>
+  </div>
+</section>
+
+<section class="factory" id="factory">
+  <div class="factory__strip" aria-hidden="true">
+    <div class="factory__track">
+      ${[...projects.factory, ...projects.factory].map((f) => `<img src="${h.img(f)}" alt="" loading="lazy" width="480" height="320">`).join('')}
+    </div>
+  </div>
+  <div class="container factory__inner">
+    <div class="factory__card" data-reveal="up">
+      <p class="kicker">${esc(H.factory.kicker)}</p>
+      <h2 class="section__title">${esc(H.factory.title)}</h2>
+      <p>${esc(H.factory.text)}</p>
+      <a class="btn btn--primary" href="${h.url(t.paths.about)}#factory">${esc(H.factory.button)} ${icon('arrow')}</a>
     </div>
   </div>
 </section>
 
 <section class="section" id="method">
   <div class="container">
-    <div class="section__head">
+    <div class="section__head" data-reveal="up">
       <p class="kicker">${esc(H.method.kicker)}</p>
       <h2 class="section__title">${esc(H.method.title)}</h2>
     </div>
     <ol class="steps">
-      ${H.method.steps.map((s, i) => `<li class="steps__item"><span class="steps__num">0${i + 1}</span>${icon(stepIcons[i], 'steps__ico')}<h3>${esc(s.title)}</h3><p>${esc(s.text)}</p></li>`).join('')}
+      ${H.method.steps.map((s, i) => `<li class="steps__item" data-reveal="up" data-delay="${i * 100}"><span class="steps__num">0${i + 1}</span>${icon(stepIcons[i], 'steps__ico')}<h3>${esc(s.title)}</h3><p>${esc(s.text)}</p></li>`).join('')}
     </ol>
   </div>
 </section>
 
 <section class="section section--dark" id="why">
   <div class="container">
-    <h2 class="section__title">${esc(H.why.title)}</h2>
+    <h2 class="section__title" data-reveal="up">${esc(H.why.title)}</h2>
     <ul class="why">
-      ${H.why.items.map((w, i) => `<li>${icon(whyIcons[i], 'why__ico')}<h3>${esc(w.title)}</h3><p>${esc(w.text)}</p></li>`).join('')}
+      ${H.why.items.map((w, i) => `<li data-reveal="up" data-delay="${i * 90}">${icon(whyIcons[i], 'why__ico')}<h3>${esc(w.title)}</h3><p>${esc(w.text)}</p></li>`).join('')}
     </ul>
+  </div>
+</section>
+
+<section class="section section--tint" id="news">
+  <div class="container">
+    <div class="section__head section__head--row" data-reveal="up">
+      <div>
+        <p class="kicker">${esc(H.news.kicker)}</p>
+        <h2 class="section__title">${esc(H.news.title)}</h2>
+      </div>
+      <a class="btn btn--outline" href="${h.url(t.paths.news)}">${esc(t.common.seeAllNews)} ${icon('arrow')}</a>
+    </div>
+    <div class="ngrid">${news.slice(0, 3).map((n, i) => newsCard(t, h, n, i)).join('')}</div>
   </div>
 </section>
 
 <section class="section" id="clients">
   <div class="container">
-    <div class="section__head">
-      <p class="kicker">${esc(H.clients.kicker)}</p>
-      <h2 class="section__title">${esc(H.clients.title)}</h2>
+    <div class="section__head" data-reveal="up">
+      <p class="kicker">${esc(H.testimonials.kicker)}</p>
+      <h2 class="section__title">${esc(H.testimonials.title)}</h2>
+      <p class="section__text">${esc(H.testimonials.empty)}</p>
     </div>
+    ${testimonials.length ? `<div class="quotes">${testimonials.slice(0, 3).map((q, i) => `<blockquote class="quote" data-reveal="up" data-delay="${i * 90}">${icon('quote', 'quote__ico')}<p>${esc(q[t.lang])}</p><footer><strong>${esc(q.name)}</strong><span>${esc(q.role[t.lang])} · ${esc(q.company)}</span></footer></blockquote>`).join('')}</div>` : ''}
     ${logoGrid(h, site.clients, 'logos--clients')}
   </div>
 </section>
 
 <section class="section section--tint" id="partners">
   <div class="container">
-    <div class="section__head">
+    <div class="section__head" data-reveal="up">
       <p class="kicker">${esc(H.partners.kicker)}</p>
       <h2 class="section__title">${esc(H.partners.title)}</h2>
       <p class="section__text">${esc(H.partners.text)}</p>

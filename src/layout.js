@@ -2,17 +2,24 @@
 // Gabarit commun : <head>, en-tête, pied de page, blocs réutilisables.
 // ---------------------------------------------------------------------------
 const site = require('./data/site');
-const services = require('./data/services');
+const catalog = require('./data/catalog');
+const fr = require('./i18n/fr');
+const en = require('./i18n/en');
 
 const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+const other = (t) => (t.lang === 'fr' ? en : fr);
 
 /** Construit un contexte d'aide pour une langue donnée. */
 function helpers(t) {
   const B = site.base;
   const url = (p) => `${B}/${p}`;
   const img = (p) => `${B}/assets/img/${p}`;
-  const servicePath = (s) => url(`${t.paths.services}${s.slug[t.lang]}/`);
-  return { url, img, servicePath, esc, B };
+  const catPath = (c, lang = t) => url(`${lang.paths[c.id]}`);
+  const itemPath = (c, it, lang = t) => url(`${lang.paths[c.id]}${it.slug[lang.lang]}/`);
+  const projectPath = (p, lang = t) => url(`${lang.paths.projects}${p.slug[lang.lang]}/`);
+  const newsPath = (n, lang = t) => url(`${lang.paths.news}${n.slug[lang.lang]}/`);
+  const fmtDate = (iso) => new Date(iso + 'T00:00:00').toLocaleDateString(t.lang === 'fr' ? 'fr-FR' : 'en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+  return { url, img, catPath, itemPath, projectPath, newsPath, fmtDate, esc, B };
 }
 
 const ICONS = {
@@ -37,21 +44,28 @@ const ICONS = {
   star: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3 6.3 6.9.9-5 4.8 1.3 6.9L12 17.6 5.8 20.9 7.1 14l-5-4.8 6.9-.9z"/></svg>',
   drawing: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 3h16v2H4zm0 16h16v2H4zM4 7h2v10H4zm14 0h2v10h-2zM8 8h8v8H8zm2 2v4h4v-4z"/></svg>',
   build: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21.7 18.3 16 12.6a5.5 5.5 0 0 1-6.6-6.6l3.1 3.1 2.1-2.1-3.1-3.1a5.5 5.5 0 0 1 6.6 6.6l5.7 5.7a1 1 0 0 1 0 1.4l-.7.7a1 1 0 0 1-1.4 0zM3 18l6.4-6.4 2 2L5 20a1.4 1.4 0 0 1-2-2z"/></svg>',
+  quote: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.5 5A4.5 4.5 0 0 0 2 9.5V19h8v-8H6a2.5 2.5 0 0 1 2.5-2.5h.5V5zm11 0A4.5 4.5 0 0 0 13 9.5V19h8v-8h-4a2.5 2.5 0 0 1 2.5-2.5h.5V5z"/></svg>',
+  calendar: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 2h2v2h6V2h2v2h3a1 1 0 0 1 1 1v15a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1h3zm-2 7v10h14V9zm2 2h3v3H7z"/></svg>',
+  tag: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 3h9l11 11-9 9L2 12zm5 3a2 2 0 1 0 0 4 2 2 0 0 0 0-4z"/></svg>',
+  chevron: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7.4 8.6 12 13.2l4.6-4.6L18 10l-6 6-6-6z"/></svg>',
 };
 const icon = (name, cls = '') => `<span class="ico ${cls}">${ICONS[name] || ''}</span>`;
 
-/** Lien vers la même page dans l'autre langue. */
-function altLink(t, pathKey, slug) {
-  const other = t.lang === 'fr' ? require('./i18n/en') : require('./i18n/fr');
-  if (pathKey === 'service') return `${site.base}/${other.paths.services}${slug[other.lang]}/`;
-  return `${site.base}/${other.paths[pathKey]}`;
+/** URL de la même page dans l'autre langue. */
+function altLink(t, pathKey, obj) {
+  const o = other(t);
+  const h = helpers(o);
+  if (pathKey === 'item') return h.itemPath(obj.cat, obj.item, o);
+  if (pathKey === 'project') return h.projectPath(obj, o);
+  if (pathKey === 'article') return h.newsPath(obj, o);
+  return `${site.base}/${o.paths[pathKey]}`;
 }
 
 function head(t, page, h) {
   const canonical = `${site.domain}${page.canonical}`;
   const alt = `${site.domain}${page.alternate}`;
-  const ogImg = `${site.domain}${h.img(page.ogImage || 'projects/proj-05.jpg')}`;
-  const jsonLd = {
+  const ogImg = `${site.domain}${h.img(page.ogImage || 'projects/jack/0011.jpg')}`;
+  const jsonLd = page.jsonLd || {
     '@context': 'https://schema.org',
     '@type': 'GeneralContractor',
     name: site.name,
@@ -76,7 +90,7 @@ function head(t, page, h) {
 <link rel="alternate" hreflang="${t.lang}" href="${canonical}">
 <link rel="alternate" hreflang="${t.otherLang.code}" href="${alt}">
 <link rel="alternate" hreflang="x-default" href="${site.domain}${site.base}/">
-<meta property="og:type" content="website">
+<meta property="og:type" content="${page.ogType || 'website'}">
 <meta property="og:site_name" content="${esc(site.shortName)}">
 <meta property="og:locale" content="${t.locale}">
 <meta property="og:title" content="${esc(page.title)}">
@@ -95,43 +109,70 @@ function head(t, page, h) {
 </head>`;
 }
 
+function megaMenu(t, h) {
+  const C = t.catalog;
+  return `<div class="mega">
+    <div class="mega__inner">
+      ${catalog.map((c) => `
+      <div class="mega__col">
+        <a class="mega__title" href="${h.catPath(c)}"><img src="${h.img(c.icon)}" alt="" width="28" height="28">${esc(C.categories[c.id].name)}</a>
+        <ul>${c.items.map((it) => `<li><a href="${h.itemPath(c, it)}">${esc(C.items[it.id].name)}</a></li>`).join('')}</ul>
+      </div>`).join('')}
+    </div>
+  </div>`;
+}
+
 function header(t, page, h) {
+  const C = t.catalog;
   const nav = [
     ['home', t.nav.home],
     ['about', t.nav.about],
-    ['services', t.nav.services],
+    ['categories', t.nav.categories],
     ['projects', t.nav.projects],
+    ['news', t.nav.news],
     ['contact', t.nav.contact],
   ];
-  const links = nav
+  const isCat = ['products', 'services', 'works', 'item'].includes(page.key);
+  const desktop = nav
     .map(([k, label]) => {
-      const active = page.key === k || (k === 'services' && page.key === 'service');
-      const sub = k === 'services'
-        ? `<ul class="nav__sub">${services.map((s) => `<li><a href="${h.servicePath(s)}">${esc(t.services[s.id].name)}</a></li>`).join('')}</ul>`
-        : '';
-      return `<li class="nav__item${sub ? ' has-sub' : ''}"><a href="${h.url(t.paths[k])}"${active ? ' aria-current="page"' : ''}>${esc(label)}</a>${sub}</li>`;
+      if (k === 'categories') {
+        return `<li class="nav__item has-mega"><a href="${h.url(t.paths.products)}"${isCat ? ' aria-current="page"' : ''} aria-haspopup="true">${esc(label)} ${icon('chevron', 'nav__chev')}</a>${megaMenu(t, h)}</li>`;
+      }
+      const active = page.key === k || (k === 'projects' && page.key === 'project') || (k === 'news' && page.key === 'article');
+      return `<li class="nav__item"><a href="${h.url(t.paths[k])}"${active ? ' aria-current="page"' : ''}>${esc(label)}</a></li>`;
+    })
+    .join('');
+  const mobile = nav
+    .map(([k, label]) => {
+      if (k === 'categories') {
+        return `<li class="mnav__item mnav__item--group"><span class="mnav__label">${esc(label)}</span>
+          ${catalog.map((c) => `<details class="mnav__details"><summary>${esc(C.categories[c.id].name)} ${icon('chevron')}</summary><ul><li><a href="${h.catPath(c)}"><strong>${esc(C.categories[c.id].name)}</strong></a></li>${c.items.map((it) => `<li><a href="${h.itemPath(c, it)}">${esc(C.items[it.id].name)}</a></li>`).join('')}</ul></details>`).join('')}
+        </li>`;
+      }
+      return `<li class="mnav__item"><a href="${h.url(t.paths[k])}">${esc(label)}</a></li>`;
     })
     .join('');
   return `
 <a class="skip" href="#main">${esc(t.nav.skip)}</a>
+<div class="progress" aria-hidden="true"><span></span></div>
 <header class="site-header" id="top">
   <div class="container site-header__inner">
     <a class="brand" href="${h.url(t.paths.home)}" aria-label="${esc(site.name)}">
       <img src="${h.img('brand/logo.png')}" width="191" height="45" alt="${esc(site.name)} – ${esc(site.tagline)}">
     </a>
     <nav class="nav" aria-label="${esc(t.nav.menu)}">
-      <ul class="nav__list">${links}</ul>
+      <ul class="nav__list">${desktop}</ul>
     </nav>
     <div class="site-header__actions">
       <a class="lang" href="${page.alternate}" hreflang="${t.otherLang.code}" lang="${t.otherLang.code}" title="${esc(t.otherLang.name)}">${icon('globe')}<span>${t.otherLang.label}</span></a>
-      <a class="btn btn--primary btn--sm" href="${h.url(t.paths.contact)}">${esc(t.nav.quote)}</a>
-      <button class="burger" type="button" aria-expanded="false" aria-controls="mobile-nav" aria-label="${esc(t.nav.menu)}">${icon('menu', 'ico--open')}${icon('close', 'ico--close')}</button>
+      <a class="btn btn--primary btn--sm" href="${h.url(t.paths.quote)}">${esc(t.nav.quote)}</a>
+      <button class="burger" type="button" aria-expanded="false" aria-controls="mobile-nav" aria-label="${esc(t.nav.menu)}"><span></span><span></span><span></span></button>
     </div>
   </div>
   <div class="mobile-nav" id="mobile-nav" hidden>
-    <ul class="mobile-nav__list">${links}</ul>
+    <ul class="mnav">${mobile}<li class="mnav__item"><a href="${h.url(t.paths.testimonials)}">${esc(t.nav.testimonials)}</a></li></ul>
     <div class="mobile-nav__footer">
-      <a class="btn btn--primary" href="${h.url(t.paths.contact)}">${esc(t.nav.quote)}</a>
+      <a class="btn btn--primary" href="${h.url(t.paths.quote)}">${esc(t.nav.quote)}</a>
       <a class="lang lang--block" href="${page.alternate}" hreflang="${t.otherLang.code}" lang="${t.otherLang.code}">${icon('globe')}<span>${esc(t.otherLang.name)}</span></a>
     </div>
   </div>
@@ -142,13 +183,14 @@ function ctaBand(t, h) {
   const p = site.phones[0];
   return `
 <section class="cta" aria-labelledby="cta-title">
+  <div class="cta__glow" aria-hidden="true"></div>
   <div class="container cta__inner">
-    <div>
+    <div data-reveal="right">
       <h2 id="cta-title" class="cta__title">${esc(t.cta.title)}</h2>
       <p class="cta__text">${esc(t.cta.text)}</p>
     </div>
-    <div class="cta__actions">
-      <a class="btn btn--light" href="${h.url(t.paths.contact)}">${esc(t.cta.button)} ${icon('arrow')}</a>
+    <div class="cta__actions" data-reveal="left">
+      <a class="btn btn--light btn--lg" href="${h.url(t.paths.quote)}">${esc(t.cta.button)} ${icon('arrow')}</a>
       <span class="cta__call">${esc(t.cta.call)} <a href="tel:${p.tel}">${esc(p.label)}</a></span>
     </div>
   </div>
@@ -157,6 +199,7 @@ function ctaBand(t, h) {
 
 function footer(t, h) {
   const year = new Date().getFullYear();
+  const C = t.catalog;
   return `
 <footer class="site-footer">
   <div class="container site-footer__grid">
@@ -171,13 +214,16 @@ function footer(t, h) {
         <li><a href="${h.url(t.paths.home)}">${esc(t.nav.home)}</a></li>
         <li><a href="${h.url(t.paths.about)}">${esc(t.nav.about)}</a></li>
         <li><a href="${h.url(t.paths.projects)}">${esc(t.nav.projects)}</a></li>
+        <li><a href="${h.url(t.paths.news)}">${esc(t.nav.news)}</a></li>
+        <li><a href="${h.url(t.paths.testimonials)}">${esc(t.nav.testimonials)}</a></li>
         <li><a href="${h.url(t.paths.contact)}">${esc(t.nav.contact)}</a></li>
+        <li><a href="${h.url(t.paths.quote)}">${esc(t.nav.quote)}</a></li>
         <li><a href="${h.url(t.paths.legal)}">${esc(t.common.legal)}</a></li>
       </ul>
     </nav>
-    <nav aria-label="${esc(t.footer.servicesTitle)}">
-      <h3 class="site-footer__title">${esc(t.footer.servicesTitle)}</h3>
-      <ul class="site-footer__links">${services.map((s) => `<li><a href="${h.servicePath(s)}">${esc(t.services[s.id].name)}</a></li>`).join('')}</ul>
+    <nav aria-label="${esc(t.footer.catalogTitle)}">
+      <h3 class="site-footer__title">${esc(t.footer.catalogTitle)}</h3>
+      <ul class="site-footer__links">${catalog.map((c) => `<li><a href="${h.catPath(c)}"><strong>${esc(C.categories[c.id].name)}</strong></a></li>${c.items.slice(0, c.id === 'products' ? 4 : 3).map((it) => `<li><a href="${h.itemPath(c, it)}">${esc(C.items[it.id].name)}</a></li>`).join('')}`).join('')}</ul>
     </nav>
     <div>
       <h3 class="site-footer__title">${esc(t.footer.contactTitle)}</h3>
@@ -185,6 +231,7 @@ function footer(t, h) {
         <li>${icon('pin')}<span>Boulevard de la République, Bali<br>${esc(site.postal)}</span></li>
         <li>${icon('phone')}<span>${site.phones.slice(0, 2).map((p) => `<a href="tel:${p.tel}">${esc(p.label)}</a>`).join('<br>')}</span></li>
         <li>${icon('mail')}<span><a href="mailto:${site.emails[0]}">${site.emails[0]}</a></span></li>
+        <li>${icon('clock')}<span>${esc(t.contact.hours.text)}</span></li>
       </ul>
     </div>
   </div>
@@ -195,11 +242,11 @@ function footer(t, h) {
     </div>
   </div>
 </footer>
-<a class="whatsapp" href="https://wa.me/${site.whatsapp}" target="_blank" rel="noopener" aria-label="${esc(t.common.whatsapp)}">${icon('whatsapp')}</a>
+<a class="whatsapp" href="https://wa.me/${site.whatsapp}" target="_blank" rel="noopener" aria-label="${esc(t.common.whatsapp)}">${icon('whatsapp')}<span class="whatsapp__tip">${esc(t.common.whatsapp)}</span></a>
 <div class="lightbox" id="lightbox" hidden role="dialog" aria-modal="true" aria-label="${esc(t.common.gallery)}">
   <button class="lightbox__close" type="button" aria-label="${esc(t.common.close)}">${icon('close')}</button>
   <button class="lightbox__nav lightbox__nav--prev" type="button" aria-label="${esc(t.common.previous)}">${icon('arrow')}</button>
-  <figure class="lightbox__figure"><img src="" alt=""><figcaption></figcaption></figure>
+  <figure class="lightbox__figure"><img src="" alt=""><figcaption></figcaption><span class="lightbox__count"></span></figure>
   <button class="lightbox__nav lightbox__nav--next" type="button" aria-label="${esc(t.common.next)}">${icon('arrow')}</button>
 </div>
 <script src="${site.base}/assets/js/main.js" defer></script>
@@ -208,14 +255,16 @@ function footer(t, h) {
 }
 
 /** Bannière de page intérieure. */
-function pageHero(h, { kicker, title, text, image, breadcrumb }) {
+function pageHero(h, { kicker, title, text, image, breadcrumb, extra = '', cls = '' }) {
   return `
-<section class="page-hero" style="--hero:url('${h.img(image)}')">
+<section class="page-hero ${cls}" style="--hero:url('${h.img(image)}')">
+  <div class="page-hero__bg" aria-hidden="true"></div>
   <div class="container page-hero__inner">
     ${breadcrumb || ''}
-    ${kicker ? `<p class="kicker kicker--light">${esc(kicker)}</p>` : ''}
-    <h1 class="page-hero__title">${title}</h1>
-    ${text ? `<p class="page-hero__text">${esc(text)}</p>` : ''}
+    ${kicker ? `<p class="kicker kicker--light" data-reveal="up">${esc(kicker)}</p>` : ''}
+    <h1 class="page-hero__title" data-reveal="up" data-delay="80">${title}</h1>
+    ${text ? `<p class="page-hero__text" data-reveal="up" data-delay="160">${esc(text)}</p>` : ''}
+    ${extra}
   </div>
 </section>`;
 }
@@ -230,7 +279,7 @@ function breadcrumb(t, h, items) {
 /** Grille de logos (clients / partenaires). */
 function logoGrid(h, list, cls = '') {
   return `<ul class="logos ${cls}">${list
-    .map((c) => `<li class="logos__item"><img src="${h.img(c.img)}" alt="${esc(c.name)}" loading="lazy" width="200" height="100"></li>`)
+    .map((c, i) => `<li class="logos__item" data-reveal="zoom" data-delay="${(i % 5) * 60}"><img src="${h.img(c.img)}" alt="${esc(c.name)}" loading="lazy" width="200" height="100"></li>`)
     .join('')}</ul>`;
 }
 
@@ -239,9 +288,50 @@ function gallery(h, images, captionFn, cls = '') {
   return `<div class="gallery ${cls}">${images
     .map((im, i) => {
       const cap = captionFn ? captionFn(im, i) : '';
-      return `<a class="gallery__item" href="${h.img(im.img || im)}" data-lightbox data-caption="${esc(cap)}"><img src="${h.img(im.img || im)}" alt="${esc(cap)}" loading="lazy" width="600" height="400"><span class="gallery__cap">${esc(cap)}</span></a>`;
+      return `<a class="gallery__item" href="${h.img(im)}" data-lightbox data-caption="${esc(cap)}" data-reveal="zoom" data-delay="${(i % 4) * 70}"><img src="${h.img(im)}" alt="${esc(cap)}" loading="lazy" width="800" height="600"><span class="gallery__cap">${esc(cap)}</span></a>`;
     })
     .join('')}</div>`;
+}
+
+/** Carte produit (catalogue). */
+function itemCard(t, h, c, it, i = 0) {
+  const T = t.catalog.items[it.id];
+  return `<a class="pcard" href="${h.itemPath(c, it)}" data-reveal="up" data-delay="${(i % 4) * 70}">
+    <div class="pcard__media"><img src="${h.img(it.images[0])}" alt="" loading="lazy" width="600" height="450"></div>
+    <div class="pcard__body">
+      <h3 class="pcard__title">${esc(T.name)}</h3>
+      <p>${esc(T.tagline)}</p>
+      <span class="pcard__more">${esc(t.catalog.labels.discover)} ${icon('arrow')}</span>
+    </div>
+  </a>`;
+}
+
+/** Carte projet phare. */
+function projectCard(t, h, p, i = 0, big = false) {
+  const P = t.projects.featured[p.id];
+  return `<a class="prj${big ? ' prj--big' : ''}" href="${h.projectPath(p)}" data-reveal="up" data-delay="${(i % 3) * 90}">
+    <img src="${h.img(p.cover)}" alt="${esc(P.name)}" loading="lazy" width="900" height="650">
+    <div class="prj__body">
+      <span class="prj__meta">${esc(p.location)}${p.year ? ` · ${p.year}` : ''}</span>
+      <h3 class="prj__title">${esc(P.name)}</h3>
+      <p class="prj__sub">${esc(P.subtitle)}</p>
+      <span class="prj__more">${esc(t.projects.viewProject)} ${icon('arrow')}</span>
+    </div>
+  </a>`;
+}
+
+/** Carte actualité. */
+function newsCard(t, h, n, i = 0) {
+  const N = n[t.lang];
+  return `<a class="ncard" href="${h.newsPath(n)}" data-reveal="up" data-delay="${(i % 3) * 90}">
+    <div class="ncard__media"><img src="${h.img(n.image)}" alt="" loading="lazy" width="600" height="400"><span class="ncard__tag">${esc(n.tag[t.lang])}</span></div>
+    <div class="ncard__body">
+      <time datetime="${n.date}">${h.fmtDate(n.date)}</time>
+      <h3 class="ncard__title">${esc(N.title)}</h3>
+      <p>${esc(N.excerpt)}</p>
+      <span class="ncard__more">${esc(t.news.readArticle)} ${icon('arrow')}</span>
+    </div>
+  </a>`;
 }
 
 function render(t, page, body) {
@@ -256,4 +346,4 @@ ${page.noCta ? '' : ctaBand(t, h)}
 ${footer(t, h)}`;
 }
 
-module.exports = { render, helpers, esc, icon, pageHero, breadcrumb, logoGrid, gallery, altLink, site, services };
+module.exports = { render, helpers, esc, icon, pageHero, breadcrumb, logoGrid, gallery, itemCard, projectCard, newsCard, altLink, site, catalog };
