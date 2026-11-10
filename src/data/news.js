@@ -51,7 +51,7 @@ module.exports = [
     id: 'equitone-stock',
     slug: { fr: 'gamme-equitone-en-stock', en: 'equitone-range-in-stock' },
     date: '2024-05-17',
-    image: 'catalog/facade/facade-2.jpg',
+    image: 'projects/jack/0032.jpg',
     tag: { fr: 'Produits', en: 'Products' },
     fr: {
       title: 'Découvrez EQUITONE, l’élégance en façade – désormais en stock',

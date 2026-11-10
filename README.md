@@ -139,3 +139,13 @@ le demande) et n'utilisent que `transform`/`opacity` pour rester fluides sur mob
 - [ ] 2-3 **témoignages clients** (nom, fonction, entreprise, texte).
 - [ ] Créer le compte Formspree et renseigner `formEndpoint`.
 - [ ] Créer une fiche **Google Business Profile** (référencement local).
+- [ ] **Photos réelles de chantiers** pour les fiches qui n'ont aujourd'hui qu'un visuel neutre
+      (φ bleu) : pergolas, carrelage, faux plafond, placoplâtre, poignées de porte, dispositifs de
+      sécurité. À déposer dans `assets/img/catalog/<fiche>/` puis à référencer dans
+      `src/data/catalog.js` (jusqu'à 4 images par fiche).
+- [ ] Photos supplémentaires pour garde-corps, jalousies, fenêtres et mobilier de bureau : ces
+      fiches utilisent des photos de réalisations proches (Jack, Krystal Palace, Tradex, usine).
+
+> **Règle sur les images** : le site n'affiche que des photos réelles de PHI & CO (chantiers
+> Jack, Krystal Palace, Tradex, usine de fabrication, logos clients/partenaires). Les images de
+> catalogue ou de banque d'images fournies sur la clé ont été retirées.
