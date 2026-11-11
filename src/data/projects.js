@@ -16,7 +16,7 @@ module.exports = {
       location: 'Douala',
       year: null,
       cats: ['facades', 'aluminium'],
-      gallery: ['projects/jack/0011.jpg', 'projects/jack/0032.jpg', 'projects/jack/0044.jpg', 'projects/jack/5900.jpg', 'projects/jack/0022.jpg', 'projects/jack/0039.jpg', 'projects/jack/5893-copie.jpg', 'projects/jack/5901.jpg', 'projects/jack/0026.jpg', 'projects/jack/0058.jpg'],
+      gallery: ['projects/jack/0011.jpg', 'projects/jack/0032.jpg', 'projects/jack/0044.jpg', 'projects/jack/5900.jpg', 'projects/jack/0022.jpg', 'projects/jack/0039.jpg', 'projects/jack/0026.jpg', 'projects/jack/0058.jpg'],
     },
     {
       id: 'krystal',
@@ -36,22 +36,17 @@ module.exports = {
       location: 'Douala',
       year: null,
       cats: ['facades'],
-      gallery: ['projects/tradex/0003.jpg', 'projects/tradex/0011.jpg', 'projects/tradex/0034.jpg', 'projects/tradex/p1090769.jpg', 'projects/tradex/0035.jpg', 'projects/tradex/p1100034.jpg', 'projects/tradex/0014.jpg', 'projects/tradex/0030.jpg'],
+      gallery: ['projects/tradex/0003.jpg', 'projects/tradex/0011.jpg', 'projects/tradex/0034.jpg', 'projects/tradex/p1090769.jpg', 'projects/tradex/0035.jpg', 'projects/tradex/p1100034.jpg', 'projects/tradex/0030.jpg'],
     },
   ],
 
   gallery: [
     { id: 'p05', img: 'projects/proj-05.jpg', cat: 'facades' },
-    { id: 'p02', img: 'projects/proj-02.jpg', cat: 'facades' },
     { id: 'p04', img: 'projects/proj-04.jpg', cat: 'facades' },
     { id: 'p09', img: 'projects/proj-09.jpg', cat: 'facades' },
     { id: 'p10', img: 'projects/proj-10.jpg', cat: 'facades' },
     { id: 'p11', img: 'projects/proj-11.jpg', cat: 'facades' },
-    { id: 'p12', img: 'projects/proj-12.jpg', cat: 'facades' },
     { id: 'p14', img: 'projects/proj-14.jpg', cat: 'facades' },
-    { id: 'p06', img: 'projects/proj-06.jpg', cat: 'interior' },
-    { id: 'p07', img: 'projects/proj-07.jpg', cat: 'interior' },
-    { id: 'p08', img: 'projects/proj-08.jpg', cat: 'site' },
   ],
 
   // Photos de l'usine (page « Qui sommes-nous » et accueil)

@@ -20,7 +20,7 @@ module.exports = [
       { id: 'partitions', slug: { fr: 'baies-et-cloisons-vitrees', en: 'glazed-openings-and-partitions' }, brands: ['Schüco', 'Cortizo', 'Saint-Gobain', 'AGC'],
         images: ['projects/proj-14.jpg', 'projects/krystal/0015.jpg', 'projects/tradex/0030.jpg', 'projects/tradex/0035.jpg'] },
       { id: 'balustrades', slug: { fr: 'garde-corps-vitres', en: 'glass-balustrades' }, brands: ['Saint-Gobain', 'AGC', 'Cristalmax'],
-        images: ['projects/jack/0015.jpg', 'projects/jack/5893-copie.jpg', 'projects/jack/5901.jpg', 'projects/jack/0022.jpg'] },
+        images: ['projects/jack/0015.jpg', 'projects/jack/0022.jpg', 'projects/jack/0026.jpg', 'projects/jack/0058.jpg'] },
       { id: 'curtainWall', slug: { fr: 'murs-rideaux', en: 'curtain-walls' }, brands: ['Schüco', 'Saint-Gobain', 'AGC', 'Cortizo'],
         images: ['projects/jack/5900.jpg', 'projects/tradex/0034.jpg', 'projects/tradex/0035.jpg', 'projects/tradex/p1090769.jpg'] },
       { id: 'cladding', slug: { fr: 'revetements-interieurs-et-exterieurs', en: 'interior-and-exterior-cladding' }, brands: ['Alucobond', 'Alucoil', 'EQUITONE', 'Trespa', 'Fundermax'],
@@ -36,7 +36,7 @@ module.exports = [
     banner: 'banners/banner-supplies.jpg',
     items: [
       { id: 'furniture', slug: { fr: 'mobilier-de-bureau', en: 'office-furniture' }, brands: ['DVO'],
-        images: ['projects/proj-06.jpg', 'projects/proj-07.jpg'] },
+        images: ['catalog/ph-furniture.jpg'] },
       { id: 'tiling', slug: { fr: 'carrelage', en: 'tiling' }, brands: ['Zanutta'],
         images: ['catalog/ph-tiling.jpg'] },
       { id: 'painting', slug: { fr: 'peinture', en: 'painting' }, brands: [],

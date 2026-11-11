@@ -4,7 +4,7 @@ const projects = require('../data/projects');
 function index(t) {
   const h = helpers(t);
   const P = t.projects;
-  const cats = ['all', 'facades', 'aluminium', 'interior', 'site'];
+  const cats = ['all', ...['facades', 'aluminium', 'interior', 'site'].filter((c) => projects.gallery.some((g) => g.cat === c))];
   const body = `
 ${pageHero(h, {
   image: 'projects/tradex/0053.jpg',
