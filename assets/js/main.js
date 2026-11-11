@@ -233,18 +233,41 @@
     });
   });
 
-  /* ----- Vidéo d'accueil : économie de données ----- */
+  /* ----- Vidéo d'accueil : toujours visible, avec bouton pause/lecture -----
+     (seuls les visiteurs qui demandent « moins d'animations » ne la voient pas démarrer seule) */
   const video = document.querySelector('.hero__video');
+  const toggle = document.querySelector('.hero__toggle');
   if (video) {
-    const c = navigator.connection;
-    const slow = c && (c.saveData || /2g/.test(c.effectiveType || ''));
-    if (slow || reduce) {
-      video.removeAttribute('autoplay');
-      video.pause();
-      video.querySelectorAll('source').forEach((s) => s.remove());
-      video.load();
+    const sync = () => {
+      const paused = video.paused;
+      if (toggle) {
+        toggle.classList.toggle('is-paused', paused);
+        toggle.setAttribute('aria-label', paused ? toggle.dataset.play : toggle.dataset.pause);
+      }
+    };
+    let userPaused = false;
+    if (reduce) { video.removeAttribute('autoplay'); video.pause(); userPaused = true; }
+    if (toggle) {
+      toggle.addEventListener('click', () => {
+        if (video.paused) { userPaused = false; video.play().catch(() => {}); } else { userPaused = true; video.pause(); }
+      });
+    }
+    video.addEventListener('play', sync);
+    video.addEventListener('pause', sync);
+    sync();
+    // Économise la batterie : pause quand la vidéo n'est plus à l'écran
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver((entries) => {
+        entries.forEach((en) => {
+          if (en.isIntersecting) { if (!userPaused) video.play().catch(() => {}); }
+          else if (!video.paused) video.pause();
+        });
+      }, { threshold: 0.05 }).observe(video);
     }
   }
+  // Le film complet (lecteur avec commandes) met le fond d'accueil en pause pendant la lecture
+  const film = document.querySelector('.film__player video');
+  if (film && video) film.addEventListener('play', () => video.pause());
 
   /* ----- Parallaxe légère sur les bannières ----- */
   const heroBg = document.querySelector('.page-hero__bg');

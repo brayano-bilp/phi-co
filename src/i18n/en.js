@@ -61,6 +61,8 @@ module.exports = {
     brands: 'Brands and systems we work with',
     gallery: 'Gallery',
     scroll: 'Scroll',
+    videoPause: 'Pause the video',
+    videoPlay: 'Play the video',
     location: 'Location',
     year: 'Year',
     category: 'Category',
@@ -87,6 +89,13 @@ module.exports = {
       primary: 'See our projects',
       secondary: 'Our products',
       trust: 'Partner of Schüco, Saint-Gobain, AGC, Alucobond, Cortizo, EQUITONE systems…',
+    },
+    film: {
+      kicker: 'Our world',
+      title: 'The Divine Proportion, at the heart of our craft',
+      text: 'The golden ratio (φ ≈ 1.618), which the mathematician Luca Pacioli called “the Divine Proportion”, inspires our name and our emblem. In a few minutes, discover our projects — Jack Building, Krystal Palace, Tradex head office — and our manufacturing plant in Douala.',
+      caption: 'PHI & CO S.A presentation film',
+      play: 'Play the film',
     },
     figures: {
       title: 'Phi & Co in figures',

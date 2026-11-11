@@ -135,15 +135,15 @@ button { font: inherit; cursor: pointer; }
 
 /* ---------- 4. Hero ---------- */
 .hero { position: relative; min-height: calc(100svh - var(--header-h)); display: flex; align-items: center; color: #fff; overflow: hidden; background: var(--navy); isolation: isolate; }
-.hero__video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: -3; animation: heroZoom 24s ease-in-out infinite alternate; }
-@keyframes heroZoom { from { transform: scale(1); } to { transform: scale(1.08); } }
-.hero__overlay { position: absolute; inset: 0; z-index: -2; background: linear-gradient(100deg, rgba(11, 43, 76, 0.94) 0%, rgba(11, 43, 76, 0.72) 50%, rgba(11, 43, 76, 0.35) 100%); }
+.hero__video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: -3; }
+.hero__overlay { position: absolute; inset: 0; z-index: -2; background: linear-gradient(100deg, rgba(11, 43, 76, 0.84) 0%, rgba(11, 43, 76, 0.52) 55%, rgba(11, 43, 76, 0.12) 100%); }
 .hero__grid { position: absolute; inset: 0; z-index: -1; background-image: linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px); background-size: 80px 80px; mask-image: radial-gradient(ellipse at 30% 50%, #000 20%, transparent 70%); -webkit-mask-image: radial-gradient(ellipse at 30% 50%, #000 20%, transparent 70%); }
 .hero__inner { padding: 5rem 0 7rem; max-width: 800px; }
 .hero__kicker { animation: fadeUp 0.8s var(--ease-out) 0.1s both; }
 .hero__title { color: #fff; font-size: clamp(2.2rem, 1.4rem + 3.4vw, 4.2rem); line-height: 1.05; margin-bottom: 1.2rem; animation: fadeUp 0.9s var(--ease-out) 0.25s both; }
 .hero__title em { font-style: normal; color: #9fd0ff; background: linear-gradient(90deg, #9fd0ff, #fff, #9fd0ff); background-size: 200% 100%; -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; animation: shimmer 6s linear infinite; }
 @keyframes shimmer { to { background-position: 200% 0; } }
+.hero__title, .hero__text, .hero__trust, .hero__kicker { text-shadow: 0 2px 18px rgba(6, 24, 44, 0.55); }
 .hero__text { font-size: 1.15rem; color: rgba(255, 255, 255, 0.86); max-width: 640px; animation: fadeUp 0.9s var(--ease-out) 0.4s both; }
 .hero__actions { display: flex; flex-wrap: wrap; gap: 0.9rem; margin: 2rem 0 1.6rem; animation: fadeUp 0.9s var(--ease-out) 0.55s both; }
 .hero__trust { font-size: 0.95rem; color: rgba(255, 255, 255, 0.75); animation: fadeUp 0.9s var(--ease-out) 0.7s both; }
@@ -155,6 +155,24 @@ button { font: inherit; cursor: pointer; }
 @keyframes scrollDot { 0% { transform: translateY(0); opacity: 1; } 70% { transform: translateY(14px); opacity: 0; } 100% { opacity: 0; } }
 @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: none; } }
 @media (max-width: 767px) { .hero__scroll { display: none; } .hero__inner { padding: 4rem 0 8rem; } .hero { min-height: 0; } }
+
+/* Bouton pause / lecture de la vidéo d'accueil */
+.hero__toggle { position: absolute; right: 1.25rem; bottom: 5.5rem; z-index: 3; width: 46px; height: 46px; display: grid; place-items: center; border-radius: 50%; color: #fff; background: rgba(11, 43, 76, 0.55); border: 1.5px solid rgba(255, 255, 255, 0.55); backdrop-filter: blur(6px); cursor: pointer; transition: background 0.25s, transform 0.25s; }
+.hero__toggle:hover { background: var(--blue); transform: scale(1.08); }
+.hero__toggle .ico { width: 20px; height: 20px; }
+.hero__toggle .ico--play { display: none; }
+.hero__toggle.is-paused .ico--pause { display: none; }
+.hero__toggle.is-paused .ico--play { display: block; }
+
+/* Film de présentation */
+.film { background: var(--sky); }
+.film__grid { display: grid; grid-template-columns: 1fr 1.25fr; gap: 3.5rem; align-items: center; }
+.film__text .section__text { margin-top: 1rem; }
+.film__player { margin: 0; }
+.film__player video { display: block; width: 100%; aspect-ratio: 16 / 9; object-fit: cover; border-radius: var(--radius); box-shadow: var(--shadow-lg); background: var(--navy); }
+.film__player figcaption { margin-top: 0.7rem; font-size: 0.88rem; color: var(--muted); text-align: center; }
+@media (max-width: 1023px) { .film__grid { grid-template-columns: 1fr; gap: 2rem; } }
+@media (max-width: 767px) { .hero__toggle { bottom: 1.25rem; } }
 
 /* ---------- 5. Chiffres ---------- */
 .figures { margin-top: -4rem; position: relative; z-index: 2; }

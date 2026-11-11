@@ -62,6 +62,8 @@ module.exports = {
     brands: 'Marques et systèmes mis en œuvre',
     gallery: 'Galerie',
     scroll: 'Défiler',
+    videoPause: 'Mettre la vidéo en pause',
+    videoPlay: 'Lire la vidéo',
     location: 'Lieu',
     year: 'Année',
     category: 'Catégorie',
@@ -88,6 +90,13 @@ module.exports = {
       primary: 'Voir nos réalisations',
       secondary: 'Nos produits',
       trust: 'Partenaire des systèmes Schüco, Saint-Gobain, AGC, Alucobond, Cortizo, EQUITONE…',
+    },
+    film: {
+      kicker: 'Notre univers',
+      title: 'La Divine Proportion, au cœur de notre métier',
+      text: 'Le nombre d’or (φ ≈ 1,618), que le mathématicien Luca Pacioli appelait « la Divine Proportion », inspire notre nom et notre emblème. En quelques minutes, découvrez nos réalisations — Immeuble Jack, Krystal Palace, siège Tradex — et notre usine de fabrication de Douala.',
+      caption: 'Film de présentation de PHI & CO S.A',
+      play: 'Lancer le film',
     },
     figures: {
       title: 'Phi & Co en quelques chiffres',

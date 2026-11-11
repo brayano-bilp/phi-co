@@ -33,7 +33,7 @@ phi-co/
 │   ├── js/main.js           ← animations, menu, lightbox, filtres, formulaires
 │   ├── img/                 ← images optimisées, classées : brand, icons, banners, catalog/<item>,
 │   │                           projects/<projet>, factory, clients, partners, services
-│   └── video/intro.webm     ← vidéo de la page d'accueil
+│   └── video/hero.mp4, intro.mp4 ← vidéo du bandeau d'accueil (photos seules) et film de présentation (logo + réalisations)
 ├── index.html, a-propos/, produits/, services/, accessoires-et-travaux-divers/,
 │   realisations/, actualites/, temoignages/, contact/, devis/, mentions-legales/   ← FR (générés)
 ├── en/                      ← version anglaise (générée)
@@ -104,6 +104,7 @@ du visiteur avec un e-mail pré-rempli (mailto:). Un champ anti-spam (honeypot) 
 Toutes les animations respectent `prefers-reduced-motion` (désactivées si l'utilisateur
 le demande) et n'utilisent que `transform`/`opacity` pour rester fluides sur mobile :
 
+* vidéo d'accueil toujours visible (bouton pause/lecture ; seuls les visiteurs qui demandent « moins d'animations » ne la voient pas démarrer seule) ;
 * entrée du hero (texte en cascade, titre scintillant, φ flottant, indicateur de défilement) ;
 * apparition au défilement par `data-reveal="up|left|right|zoom"` + `data-delay="ms"` ;
 * compteurs animés (`.count[data-count]`), frise chronologique qui se dessine ;
@@ -149,3 +150,16 @@ le demande) et n'utilisent que `transform`/`opacity` pour rester fluides sur mob
 > **Règle sur les images** : le site n'affiche que des photos réelles de PHI & CO (chantiers
 > Jack, Krystal Palace, Tradex, usine de fabrication, logos clients/partenaires). Les images de
 > catalogue ou de banque d'images fournies sur la clé ont été retirées.
+
+## 8. Vidéos
+
+Deux vidéos H.264 (MP4, 1280×720, sans son), réalisées uniquement avec les photos réelles de
+PHI & CO (Jack, Krystal Palace, Tradex, usine) :
+
+* `assets/video/hero.mp4` (~42 s, en boucle) : fond du bandeau d'accueil, sans légendes ;
+* `assets/video/intro.mp4` (~51 s) : film de présentation avec lecteur (section « La Divine
+  Proportion »), ouvert et fermé par le logo sur la spirale d'or.
+
+Pour les refaire avec de nouvelles photos : monter les nouvelles images en MP4 H.264 (1280×720,
+`-crf 28`, `-movflags +faststart`, sans piste audio, idéalement < 7 Mo) puis remplacer ces deux fichiers.
+Les textes de la section film se modifient dans `src/i18n/fr.js` / `en.js` (clé `home.film`).

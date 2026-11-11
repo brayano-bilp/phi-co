@@ -15,8 +15,8 @@ module.exports = function home(t) {
 
   const body = `
 <section class="hero">
-  <video class="hero__video" autoplay muted loop playsinline preload="metadata" poster="${h.img('projects/jack/0011.jpg')}" aria-hidden="true">
-    <source src="${site.base}/assets/video/intro.webm" type="video/webm">
+  <video class="hero__video" autoplay muted loop playsinline preload="auto" poster="${h.img('projects/jack/0011.jpg')}" aria-hidden="true">
+    <source src="${site.base}/assets/video/hero.mp4" type="video/mp4">
   </video>
   <div class="hero__overlay"></div>
   <div class="hero__grid" aria-hidden="true"></div>
@@ -30,6 +30,10 @@ module.exports = function home(t) {
     </div>
     <p class="hero__trust">${icon('check')} ${esc(H.hero.trust)}</p>
   </div>
+  <button class="hero__toggle" type="button" aria-label="${esc(t.common.videoPause)}" data-pause="${esc(t.common.videoPause)}" data-play="${esc(t.common.videoPlay)}">
+    <svg class="ico ico--pause" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 5h3.5v14H7zM13.5 5H17v14h-3.5z" fill="currentColor"/></svg>
+    <svg class="ico ico--play" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z" fill="currentColor"/></svg>
+  </button>
   <div class="hero__phi" aria-hidden="true">φ</div>
   <a class="hero__scroll" href="#figures" aria-label="${esc(t.common.scroll)}"><span></span></a>
 </section>
@@ -39,6 +43,22 @@ module.exports = function home(t) {
     <ul class="figures__list">
       ${H.figures.items.map((f, i) => `<li class="figures__item" data-reveal="up" data-delay="${i * 80}"><span class="figures__value"><span class="count" data-count="${f.value}">0</span>${f.suffix ? `<small>${esc(f.suffix)}</small>` : ''}</span><span class="figures__label">${esc(f.label)}</span></li>`).join('')}
     </ul>
+  </div>
+</section>
+
+<section class="section film" id="film">
+  <div class="container film__grid">
+    <div class="film__text" data-reveal="left">
+      <p class="kicker">${esc(H.film.kicker)}</p>
+      <h2 class="section__title">${esc(H.film.title)}</h2>
+      <p class="section__text">${esc(H.film.text)}</p>
+    </div>
+    <figure class="film__player" data-reveal="right">
+      <video controls playsinline preload="none" poster="${h.img('brand/film-poster.jpg')}" aria-label="${esc(H.film.caption)}">
+            <source src="${site.base}/assets/video/intro.mp4" type="video/mp4">
+      </video>
+      <figcaption>${esc(H.film.caption)}</figcaption>
+    </figure>
   </div>
 </section>
 

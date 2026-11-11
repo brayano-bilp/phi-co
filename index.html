@@ -73,8 +73,8 @@
 <main id="main">
 
 <section class="hero">
-  <video class="hero__video" autoplay muted loop playsinline preload="metadata" poster="/assets/img/projects/jack/0011.jpg" aria-hidden="true">
-    <source src="/assets/video/intro.webm" type="video/webm">
+  <video class="hero__video" autoplay muted loop playsinline preload="auto" poster="/assets/img/projects/jack/0011.jpg" aria-hidden="true">
+    <source src="/assets/video/hero.mp4" type="video/mp4">
   </video>
   <div class="hero__overlay"></div>
   <div class="hero__grid" aria-hidden="true"></div>
@@ -88,6 +88,10 @@
     </div>
     <p class="hero__trust"><span class="ico "><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9.5 16.2 5.3 12l-1.4 1.4 5.6 5.6 12-12-1.4-1.4z"/></svg></span> Partenaire des systèmes Schüco, Saint-Gobain, AGC, Alucobond, Cortizo, EQUITONE…</p>
   </div>
+  <button class="hero__toggle" type="button" aria-label="Mettre la vidéo en pause" data-pause="Mettre la vidéo en pause" data-play="Lire la vidéo">
+    <svg class="ico ico--pause" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 5h3.5v14H7zM13.5 5H17v14h-3.5z" fill="currentColor"/></svg>
+    <svg class="ico ico--play" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z" fill="currentColor"/></svg>
+  </button>
   <div class="hero__phi" aria-hidden="true">φ</div>
   <a class="hero__scroll" href="#figures" aria-label="Défiler"><span></span></a>
 </section>
@@ -97,6 +101,22 @@
     <ul class="figures__list">
       <li class="figures__item" data-reveal="up" data-delay="0"><span class="figures__value"><span class="count" data-count="2005">0</span></span><span class="figures__label">Année de création</span></li><li class="figures__item" data-reveal="up" data-delay="80"><span class="figures__value"><span class="count" data-count="100">0</span><small>M FCFA</small></span><span class="figures__label">de capital social</span></li><li class="figures__item" data-reveal="up" data-delay="160"><span class="figures__value"><span class="count" data-count="3">0</span></span><span class="figures__label">sites à Douala : usines, entrepôt, showroom</span></li><li class="figures__item" data-reveal="up" data-delay="240"><span class="figures__value"><span class="count" data-count="2">0</span></span><span class="figures__label">représentations en Europe : Genève et Cordignano</span></li><li class="figures__item" data-reveal="up" data-delay="320"><span class="figures__value"><span class="count" data-count="13">0</span></span><span class="figures__label">partenaires industriels en Europe et au Maroc</span></li>
     </ul>
+  </div>
+</section>
+
+<section class="section film" id="film">
+  <div class="container film__grid">
+    <div class="film__text" data-reveal="left">
+      <p class="kicker">Notre univers</p>
+      <h2 class="section__title">La Divine Proportion, au cœur de notre métier</h2>
+      <p class="section__text">Le nombre d’or (φ ≈ 1,618), que le mathématicien Luca Pacioli appelait « la Divine Proportion », inspire notre nom et notre emblème. En quelques minutes, découvrez nos réalisations — Immeuble Jack, Krystal Palace, siège Tradex — et notre usine de fabrication de Douala.</p>
+    </div>
+    <figure class="film__player" data-reveal="right">
+      <video controls playsinline preload="none" poster="/assets/img/brand/film-poster.jpg" aria-label="Film de présentation de PHI &amp; CO S.A">
+            <source src="/assets/video/intro.mp4" type="video/mp4">
+      </video>
+      <figcaption>Film de présentation de PHI &amp; CO S.A</figcaption>
+    </figure>
   </div>
 </section>
 
