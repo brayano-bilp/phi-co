@@ -171,6 +171,20 @@ module.exports = {
       'PHI & CO S.A is a company incorporated under Cameroonian law with a share capital of 100,000,000 FCFA. Founded in 2005, it was restructured in 2009 and 2019. Our field of activity covers the engineering, production and installation of building-finishing works. We specialise mainly in façades, glazing and supplies.',
       'Our mission is to create works that meet international standards while contributing to national development. Backed by our expertise and commitment to quality, we are proud to take part in building a sustainable and attractive built environment. Our name refers to the golden ratio φ, the “divine proportion”: harmony of proportions guides our approach to the building envelope.',
     ],
+    phi: {
+      kicker: 'Why “PHI”?',
+      title: 'The Divine Proportion, our signature',
+      paragraphs: [
+        'φ (phi) is the Greek letter for the golden ratio, about 1.618. Two lengths are in this ratio when the whole is to the larger part as the larger part is to the smaller one.',
+        'In 1509, the mathematician Luca Pacioli devoted a treatise to it, illustrated by Leonardo da Vinci, and called it “the Divine Proportion”. Since the Renaissance, architects and artists have used it to compose harmonious façades and volumes.',
+        'Our name carries this pursuit of balance: façades, joinery and glazing with the right proportions, built to last and to enhance the city.',
+      ],
+      facts: [
+        '<strong>Golden rectangle</strong>: its length is 1.618 times its width; remove a square and another golden rectangle remains, endlessly.',
+        '<strong>Golden spiral</strong>: it links these successive squares (see the figure).',
+        '<strong>This website</strong> is itself built on it: 61.8% / 38.2% columns, golden-format photos, spiral galleries.',
+      ],
+    },
     history: {
       title: 'Our history',
       items: [

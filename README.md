@@ -161,3 +161,14 @@ d'origine du client (logo, nombre d'or, masques) ; viennent ensuite les photos r
 
 Pour les refaire avec de nouvelles photos : monter les nouvelles images en MP4 H.264 (1280×720,
 `-crf 28`, `-movflags +faststart`, sans piste audio, idéalement < 7 Mo) puis remplacer ce fichier (le site ajoute automatiquement un numéro de version pour vider le cache des navigateurs).
+
+## 9. La Divine Proportion (φ ≈ 1,618) dans le site
+
+* **Page « Qui sommes-nous »** : encadré « Pourquoi PHI ? » (textes `about.phi` dans `fr.js`/`en.js`)
+  avec un rectangle d'or dont la spirale se dessine à l'apparition (`goldenSvg()` dans `layout.js`).
+* **Mise en page** : colonnes texte/image en 61,8 % / 38,2 % (`.split`, `.item-hero`, `.phi__grid`) ;
+  photos des cartes, galeries et fiches au format rectangle d'or (`aspect-ratio: 1.618 / 1`).
+* **Galeries en spirale** (fiches projets et usine) : `goldenGallery()` compose les 5 premières
+  photos en rectangle de Fibonacci 13 × 8 (carrés 8, 5, 3, 2, puis 2 × 1) parcouru par la spirale ;
+  les photos suivantes forment une grille classique. Sur mobile : grille simple.
+  ➜ Choisissez bien la **1re photo** de chaque galerie : c'est la plus grande.

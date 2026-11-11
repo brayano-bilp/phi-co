@@ -1,4 +1,4 @@
-const { render, helpers, esc, icon, pageHero, breadcrumb, logoGrid, gallery, site, altLink } = require('../layout');
+const { render, helpers, esc, icon, pageHero, breadcrumb, logoGrid, gallery, goldenGallery, goldenSvg, site, altLink } = require('../layout');
 const projects = require('../data/projects');
 
 module.exports = function about(t) {
@@ -33,6 +33,21 @@ ${pageHero(h, {
   </div>
 </section>
 
+<section class="section phi" id="pourquoi-phi">
+  <div class="container phi__grid">
+    <div class="phi__text" data-reveal="right">
+      <p class="kicker">${esc(A.phi.kicker)}</p>
+      <h2 class="section__title">${esc(A.phi.title)}</h2>
+      ${A.phi.paragraphs.map((p) => `<p>${esc(p)}</p>`).join('')}
+      <ul class="phi__facts">${A.phi.facts.map((f) => `<li>${f}</li>`).join('')}</ul>
+    </div>
+    <figure class="phi__figure" data-reveal="zoom">
+      ${goldenSvg()}
+      <figcaption><span class="phi__symbol">φ</span> = (1 + √5) / 2 ≈ ${t.lang === 'fr' ? '1,618' : '1.618'}…</figcaption>
+    </figure>
+  </div>
+</section>
+
 <section class="section section--tint">
   <div class="container">
     <h2 class="section__title section__title--center" data-reveal="up">${esc(A.history.title)}</h2>
@@ -61,7 +76,7 @@ ${pageHero(h, {
       <h2 class="section__title">${esc(A.factory.title)}</h2>
       <p class="section__text">${esc(A.factory.text)}</p>
     </div>
-    ${gallery(h, ['factory/capture.jpg', 'factory/1800.jpg', 'factory/1712.jpg', 'factory/1846.jpg', 'factory/1809.jpg', 'factory/1701.jpg', 'factory/1877.jpg', 'factory/1765.jpg', 'factory/1823.jpg', 'factory/1733.jpg', 'factory/capture-2.jpg', 'factory/1887.jpg'], () => A.factory.kicker, 'gallery--4 gallery--masonry')}
+    ${goldenGallery(h, ['factory/capture.jpg', 'factory/1800.jpg', 'factory/1846.jpg', 'factory/1712.jpg', 'factory/1765.jpg', 'factory/1809.jpg', 'factory/1701.jpg', 'factory/1877.jpg', 'factory/1823.jpg', 'factory/1733.jpg', 'factory/capture-2.jpg'], () => A.factory.kicker, 'gallery--3')}
   </div>
 </section>
 

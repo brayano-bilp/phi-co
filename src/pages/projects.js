@@ -1,4 +1,4 @@
-const { render, helpers, esc, icon, pageHero, breadcrumb, logoGrid, gallery, projectCard, site, altLink } = require('../layout');
+const { render, helpers, esc, icon, pageHero, breadcrumb, logoGrid, gallery, goldenGallery, projectCard, site, altLink } = require('../layout');
 const projects = require('../data/projects');
 
 function index(t) {
@@ -102,7 +102,7 @@ ${pageHero(h, {
 <section class="section section--tint">
   <div class="container">
     <h2 class="section__title" data-reveal="up">${esc(t.common.gallery)}</h2>
-    ${gallery(h, p.gallery, (im, i) => `${F.name} – ${i + 1}/${p.gallery.length}`, 'gallery--masonry gallery--3')}
+    ${goldenGallery(h, p.gallery, (im, i) => `${F.name} – ${i + 1}/${p.gallery.length}`, 'gallery--3')}
   </div>
 </section>
 <section class="section">

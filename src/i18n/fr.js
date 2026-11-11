@@ -172,6 +172,20 @@ module.exports = {
       'PHI & CO S.A est une entreprise de droit camerounais, avec un capital de 100 000 000 FCFA. Fondée en 2005, elle a été réformée en 2009 et 2019. Notre domaine d’activité englobe les études, la production et la réalisation des ouvrages de second-œuvre, notamment les travaux de finitions pour les bâtiments. Nous nous spécialisons principalement dans les façades, les vitreries et les fournitures.',
       'Notre mission est de créer des ouvrages répondant aux normes internationales, tout en contribuant au développement national. Forts de notre expertise et de notre engagement envers la qualité, nous sommes fiers de participer à la construction d’un environnement bâti durable et esthétique. Notre nom fait référence au nombre d’or φ, la « divine proportion » : l’harmonie des proportions guide notre approche de l’enveloppe du bâtiment.',
     ],
+    phi: {
+      kicker: 'Pourquoi « PHI » ?',
+      title: 'La Divine Proportion, notre signature',
+      paragraphs: [
+        'φ (phi) est la lettre grecque qui désigne le nombre d’or, environ 1,618. Deux longueurs sont dans ce rapport lorsque le tout est à la plus grande partie ce que la plus grande est à la plus petite.',
+        'En 1509, le mathématicien Luca Pacioli lui consacre un traité illustré par Léonard de Vinci et l’appelle « la Divine Proportion ». Depuis la Renaissance, architectes et artistes s’y réfèrent pour composer des façades et des volumes harmonieux.',
+        'C’est cette exigence d’équilibre que porte notre nom : des façades, des menuiseries et des vitrages aux proportions justes, conçus pour durer et pour embellir la ville.',
+      ],
+      facts: [
+        '<strong>Rectangle d’or</strong> : sa longueur vaut 1,618 fois sa largeur ; en retirant un carré, on retrouve un rectangle d’or, à l’infini.',
+        '<strong>Spirale d’or</strong> : elle relie ces carrés successifs (voir la figure).',
+        '<strong>Ce site</strong> en est lui-même construit : colonnes en 61,8 % / 38,2 %, photos au format d’or, galeries en spirale.',
+      ],
+    },
     history: {
       title: 'Notre histoire',
       items: [

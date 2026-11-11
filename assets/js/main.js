@@ -64,6 +64,15 @@
     new IntersectionObserver((en, o) => { if (en[0].isIntersecting) { timeline.classList.add('is-visible'); o.disconnect(); } }, { threshold: 0.3 }).observe(timeline);
   }
 
+  /* ----- Spirale d'or des galeries : se dessine à l'apparition ----- */
+  const spirals = document.querySelectorAll('.mosaic--golden');
+  if (spirals.length) {
+    if ('IntersectionObserver' in window && !reduce) {
+      const so = new IntersectionObserver((entries) => entries.forEach((en) => { if (en.isIntersecting) { en.target.classList.add('is-drawn'); so.unobserve(en.target); } }), { threshold: 0.35 });
+      spirals.forEach((m) => so.observe(m));
+    } else spirals.forEach((m) => m.classList.add('is-drawn'));
+  }
+
   /* ----- Compteurs animés ----- */
   const counters = document.querySelectorAll('.count[data-count]');
   if (counters.length) {

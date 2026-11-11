@@ -293,6 +293,50 @@ function gallery(h, images, captionFn, cls = '') {
     .join('')}</div>`;
 }
 
+/**
+ * Rectangle d'or (1,618 : 1) découpé en carrés successifs + spirale d'or.
+ * Sert à l'encadré « Pourquoi PHI ? » ; le tracé se dessine à l'apparition.
+ */
+function goldenSvg(cls = '') {
+  const phi = (1 + Math.sqrt(5)) / 2;
+  let x = 0, y = 0, w = 100 * phi, h = 100;
+  const squares = [];
+  let d = 'M0 100';
+  for (let k = 0; k < 9; k++) {
+    const m = k % 4;
+    let s;
+    if (m === 0) { s = h; squares.push([x, y, s]); d += ` A${s} ${s} 0 0 1 ${x + s} ${y}`; x += s; w -= s; }
+    else if (m === 1) { s = w; squares.push([x, y, s]); d += ` A${s} ${s} 0 0 1 ${x + s} ${y + s}`; y += s; h -= s; }
+    else if (m === 2) { s = h; squares.push([x + w - s, y, s]); d += ` A${s} ${s} 0 0 1 ${x + w - s} ${y + s}`; w -= s; }
+    else { s = w; squares.push([x, y + h - s, s]); d += ` A${s} ${s} 0 0 1 ${x} ${y + h - s}`; h -= s; }
+  }
+  const r = (n) => Math.round(n * 1000) / 1000;
+  d = d.replace(/-?\d+\.\d+/g, (n) => String(r(Number(n))));
+  return `<svg class="golden ${cls}" viewBox="-1 -1 ${r(100 * phi) + 2} 102" aria-hidden="true">
+  <rect class="golden__frame" x="0" y="0" width="${r(100 * phi)}" height="100"/>
+  ${squares.map(([sx, sy, s], i) => `<rect class="golden__sq" style="--i:${i}" x="${r(sx)}" y="${r(sy)}" width="${r(s)}" height="${r(s)}"/>`).join('')}
+  <path class="golden__spiral" pathLength="1" d="${d}"/>
+</svg>`;
+}
+
+/**
+ * Galerie « spirale d'or » : les 5 premières photos composent un rectangle de Fibonacci
+ * (13 × 8 : carrés de 8, 5, 3, 2 puis 2 × 1) parcouru par la spirale ; les suivantes
+ * forment une grille classique. Sur mobile, grille simple.
+ */
+function goldenGallery(h, images, captionFn, restCls = 'gallery--3') {
+  const first = images.slice(0, 5);
+  const rest = images.slice(5);
+  const item = (im, i, extra) => {
+    const cap = captionFn ? captionFn(im, i) : '';
+    return `<a class="mosaic__item ${extra}" href="${h.img(im)}" data-lightbox data-caption="${esc(cap)}" data-reveal="zoom" data-delay="${i * 90}"><img src="${h.img(im)}" alt="${esc(cap)}" loading="lazy" width="800" height="600"></a>`;
+  };
+  return `<div class="mosaic mosaic--golden">
+  ${first.map((im, i) => item(im, i, `mosaic__item--${i + 1}`)).join('')}
+  <svg class="mosaic__spiral" viewBox="0 0 13 8" preserveAspectRatio="none" aria-hidden="true"><path pathLength="1" d="M0 8 A8 8 0 0 1 8 0 A5 5 0 0 1 13 5 A3 3 0 0 1 10 8 A2 2 0 0 1 8 6 A1 1 0 0 1 9 5"/></svg>
+</div>${rest.length ? `\n<div class="gallery-rest">${gallery(h, rest, captionFn ? (im, i) => captionFn(im, i + 5) : null, restCls)}</div>` : ''}`;
+}
+
 /** Carte produit (catalogue). */
 function itemCard(t, h, c, it, i = 0) {
   const T = t.catalog.items[it.id];
@@ -346,4 +390,4 @@ ${page.noCta ? '' : ctaBand(t, h)}
 ${footer(t, h)}`;
 }
 
-module.exports = { render, helpers, esc, icon, pageHero, breadcrumb, logoGrid, gallery, itemCard, projectCard, newsCard, altLink, site, catalog };
+module.exports = { render, helpers, esc, icon, pageHero, breadcrumb, logoGrid, gallery, goldenGallery, goldenSvg, itemCard, projectCard, newsCard, altLink, site, catalog };
