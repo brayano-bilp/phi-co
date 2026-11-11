@@ -156,6 +156,17 @@ button { font: inherit; cursor: pointer; }
 @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: none; } }
 @media (max-width: 767px) { .hero__scroll { display: none; } .hero__inner { padding: 4rem 0 8rem; } .hero { min-height: 0; } }
 
+/* Accueil : le film seul, en plein cadre, rien par-dessus */
+.hero--video { display: block; min-height: 0; background: #fcfcfc; color: inherit; isolation: auto; }
+.hero__frame { width: min(100%, calc((100svh - var(--header-h)) * 16 / 9)); aspect-ratio: 16 / 9; margin-inline: auto; }
+.hero--video .hero__video { position: static; display: block; width: 100%; height: 100%; object-fit: contain; z-index: auto; background: #fcfcfc; clip-path: inset(2px); }
+.hero__frame { background: #fcfcfc; }
+/* Texte d'accueil, sous la vidéo */
+.hero-intro { position: relative; overflow: hidden; background: var(--navy); color: #fff; padding-bottom: 4rem; }
+.hero-intro .hero__inner { padding: 3.5rem 0 3rem; }
+.hero-intro .hero__toggle { top: 1rem; bottom: auto; }
+@media (max-width: 767px) { .hero-intro .hero__inner { padding: 4.25rem 0 2.5rem; } .hero-intro .hero__toggle { top: 1rem; right: 1rem; bottom: auto; width: 40px; height: 40px; } }
+
 /* Bouton pause / lecture de la vidéo d'accueil */
 .hero__toggle { position: absolute; right: 1.25rem; bottom: 5.5rem; z-index: 3; width: 46px; height: 46px; display: grid; place-items: center; border-radius: 50%; color: #fff; background: rgba(11, 43, 76, 0.55); border: 1.5px solid rgba(255, 255, 255, 0.55); backdrop-filter: blur(6px); cursor: pointer; transition: background 0.25s, transform 0.25s; }
 .hero__toggle:hover { background: var(--blue); transform: scale(1.08); }

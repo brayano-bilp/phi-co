@@ -33,7 +33,7 @@ phi-co/
 │   ├── js/main.js           ← animations, menu, lightbox, filtres, formulaires
 │   ├── img/                 ← images optimisées, classées : brand, icons, banners, catalog/<item>,
 │   │                           projects/<projet>, factory, clients, partners, services
-│   └── video/hero.mp4, intro.mp4 ← vidéo du bandeau d'accueil (photos seules) et film de présentation (logo + réalisations)
+│   └── video/intro.mp4      ← film d'accueil (début d'origine + chantiers)
 ├── index.html, a-propos/, produits/, services/, accessoires-et-travaux-divers/,
 │   realisations/, actualites/, temoignages/, contact/, devis/, mentions-legales/   ← FR (générés)
 ├── en/                      ← version anglaise (générée)
@@ -153,14 +153,11 @@ le demande) et n'utilisent que `transform`/`opacity` pour rester fluides sur mob
 
 ## 8. Vidéos
 
-Deux vidéos H.264 (MP4, 1280×720, 29,97 i/s, sans son). Les chantiers sont uniquement des photos
-réelles de PHI & CO (Jack, Krystal Palace, Tradex, usine), animées au sous-pixel (mouvement fluide) :
-
-* `assets/video/hero.mp4` (~38 s, en boucle) : fond du bandeau d'accueil, sans légendes ;
-* `assets/video/intro.mp4` (~55 s) : film de présentation avec lecteur (section « La Divine
-  Proportion »). Les 14 premières secondes sont **exactement celles de la vidéo d'origine du
-  client** (logo, formules du nombre d'or, masques) ; viennent ensuite les chantiers, puis le logo.
+Une vidéo H.264 (MP4, 1280×720, 29,97 i/s, sans son) : `assets/video/intro.mp4` (~55 s, en boucle),
+affichée **seule et en plein cadre en haut de l'accueil** (aucun calque ni texte par-dessus ; le titre
+et les boutons sont juste en dessous). Les 14 premières secondes sont exactement celles de la vidéo
+d'origine du client (logo, nombre d'or, masques) ; viennent ensuite les photos réelles des chantiers
+(Jack, Krystal Palace, Tradex, usine), animées au sous-pixel, puis le logo.
 
 Pour les refaire avec de nouvelles photos : monter les nouvelles images en MP4 H.264 (1280×720,
-`-crf 28`, `-movflags +faststart`, sans piste audio, idéalement < 7 Mo) puis remplacer ces deux fichiers.
-Les textes de la section film se modifient dans `src/i18n/fr.js` / `en.js` (clé `home.film`).
+`-crf 28`, `-movflags +faststart`, sans piste audio, idéalement < 7 Mo) puis remplacer ce fichier (le site ajoute automatiquement un numéro de version pour vider le cache des navigateurs).

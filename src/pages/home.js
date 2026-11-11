@@ -11,15 +11,19 @@ module.exports = function home(t) {
   const whyIcons = ['factory', 'shield', 'globe', 'star'];
   const products = catalog[0];
   const flagship = ['curtainWall', 'doors', 'windows', 'pergolas'].map((id) => products.items.find((i) => i.id === id));
+  const videoVersion = require('crypto').createHash('md5').update(require('fs').readFileSync(require('path').join(__dirname, '../../assets/video/intro.mp4'))).digest('hex').slice(0, 8);
   const words = H.hero.title; // contient <em>…</em>
 
   const body = `
-<section class="hero">
-  <video class="hero__video" autoplay muted loop playsinline preload="auto" poster="${h.img('projects/jack/0011.jpg')}" aria-hidden="true">
-    <source src="${site.base}/assets/video/hero.mp4" type="video/mp4">
-  </video>
-  <div class="hero__overlay"></div>
-  <div class="hero__grid" aria-hidden="true"></div>
+<section class="hero hero--video" aria-label="${esc(H.film.caption)}">
+  <div class="hero__frame">
+    <video class="hero__video" autoplay muted loop playsinline preload="auto" poster="${h.img('brand/film-poster.jpg')}" aria-label="${esc(H.film.caption)}">
+      <source src="${site.base}/assets/video/intro.mp4?v=${videoVersion}" type="video/mp4">
+    </video>
+  </div>
+</section>
+
+<section class="hero-intro">
   <div class="container hero__inner">
     <p class="kicker kicker--light hero__kicker">${esc(H.hero.kicker)}</p>
     <h1 class="hero__title">${words}</h1>
@@ -35,7 +39,6 @@ module.exports = function home(t) {
     <svg class="ico ico--play" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z" fill="currentColor"/></svg>
   </button>
   <div class="hero__phi" aria-hidden="true">φ</div>
-  <a class="hero__scroll" href="#figures" aria-label="${esc(t.common.scroll)}"><span></span></a>
 </section>
 
 <section class="figures" id="figures" aria-label="${esc(H.figures.title)}">
@@ -43,22 +46,6 @@ module.exports = function home(t) {
     <ul class="figures__list">
       ${H.figures.items.map((f, i) => `<li class="figures__item" data-reveal="up" data-delay="${i * 80}"><span class="figures__value"><span class="count" data-count="${f.value}">0</span>${f.suffix ? `<small>${esc(f.suffix)}</small>` : ''}</span><span class="figures__label">${esc(f.label)}</span></li>`).join('')}
     </ul>
-  </div>
-</section>
-
-<section class="section film" id="film">
-  <div class="container film__grid">
-    <div class="film__text" data-reveal="left">
-      <p class="kicker">${esc(H.film.kicker)}</p>
-      <h2 class="section__title">${esc(H.film.title)}</h2>
-      <p class="section__text">${esc(H.film.text)}</p>
-    </div>
-    <figure class="film__player" data-reveal="right">
-      <video controls playsinline preload="none" poster="${h.img('brand/film-poster.jpg')}" aria-label="${esc(H.film.caption)}">
-            <source src="${site.base}/assets/video/intro.mp4" type="video/mp4">
-      </video>
-      <figcaption>${esc(H.film.caption)}</figcaption>
-    </figure>
   </div>
 </section>
 
