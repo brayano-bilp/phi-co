@@ -153,11 +153,19 @@ le demande) et n'utilisent que `transform`/`opacity` pour rester fluides sur mob
 
 ## 8. Vidéos
 
-Une vidéo H.264 (MP4, 1280×720, 29,97 i/s, sans son) : `assets/video/intro.mp4` (~55 s, en boucle),
+Une vidéo H.264 (MP4, 1280×720, 29,97 i/s, sans son) : `assets/video/intro.mp4` (~72 s, en boucle),
 affichée **seule et en plein cadre en haut de l'accueil** (aucun calque ni texte par-dessus ; le titre
-et les boutons sont juste en dessous). Les 14 premières secondes sont exactement celles de la vidéo
-d'origine du client (logo, nombre d'or, masques) ; viennent ensuite les photos réelles des chantiers
-(Jack, Krystal Palace, Tradex, usine), animées au sous-pixel, puis le logo.
+et les boutons sont juste en dessous). Déroulé :
+
+1. 0–14 s : début **exact** de la vidéo d'origine du client (logo, nombre d'or, masques) ;
+2. signes de la Divine Proportion : schéma a + b (redessiné net), spirale d'or, homme de Vitruve ;
+3. masques africains ;
+4. réalisations : Immeuble Jack, Krystal Palace (dont vues de nuit, marquise et façade), siège Tradex,
+   usine — avec légendes ;
+5. retour au logo.
+
+Les images sont animées au sous-pixel (mouvement fluide, sans tremblement) ; les petites images
+fournies sont présentées « en tableau » sur un fond soigné pour rester nettes.
 
 Pour les refaire avec de nouvelles photos : monter les nouvelles images en MP4 H.264 (1280×720,
 `-crf 28`, `-movflags +faststart`, sans piste audio, idéalement < 7 Mo) puis remplacer ce fichier (le site ajoute automatiquement un numéro de version pour vider le cache des navigateurs).
