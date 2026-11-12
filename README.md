@@ -159,7 +159,7 @@ et les boutons sont juste en dessous). Déroulé :
 
 1. 0–14 s : début **exact** de la vidéo d'origine du client (logo, nombre d'or, masques) ;
 2. signes de la Divine Proportion : schéma a + b (redessiné net), spirale d'or, homme de Vitruve ;
-3. masques africains ;
+3. masques africains, détourés (fond neutre bleu nuit) ;
 4. réalisations : Immeuble Jack, Krystal Palace (dont vues de nuit, marquise et façade), siège Tradex,
    usine — avec légendes ;
 5. retour au logo.
